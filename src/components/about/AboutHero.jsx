@@ -46,7 +46,7 @@ export default function AboutHero() {
             </span>
           </motion.div>
 
-          {/* Large Display Headline — Intentional Semantic Progression in 3 Lines */}
+          {/* Large Display Headline: Intentional Semantic Progression in 3 Lines */}
           <motion.h1
             id="about-hero-heading"
             initial="hidden"
@@ -90,7 +90,7 @@ export default function AboutHero() {
             </motion.span>
           </motion.h1>
 
-          {/* One Concise Supporting Line — Clearly Secondary */}
+          {/* One Concise Supporting Line: Clearly Secondary */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

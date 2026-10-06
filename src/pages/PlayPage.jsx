@@ -13,13 +13,7 @@ export default function PlayPage() {
   const [activeTab, setActiveTab] = useState('both'); // 'both' | 'tictactoe' | 'snake'
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] pt-24 sm:pt-28 pb-36 px-6 md:px-12 select-none"
-    >
+    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] pt-24 sm:pt-28 pb-36 px-6 md:px-12 select-none">
       <div className="max-w-[1080px] mx-auto flex flex-col gap-10 sm:gap-12">
         {/* Page Header */}
         <header className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pb-6 border-b border-black/[0.06]">
@@ -84,6 +78,6 @@ export default function PlayPage() {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

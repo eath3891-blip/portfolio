@@ -27,6 +27,13 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
     }
   };
 
+  const handleTabClick = (id) => {
+    setHoveredTab(null);
+    if (onSelectSection) {
+      onSelectSection(id);
+    }
+  };
+
   return (
     <nav
       aria-label="Primary Navigation"
@@ -40,7 +47,7 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
           return (
             <button
               key={item.id}
-              onClick={() => onSelectSection(item.id)}
+              onClick={() => handleTabClick(item.id)}
               onMouseEnter={() => setHoveredTab(item.id)}
               onMouseLeave={() => setHoveredTab(null)}
               className="relative group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-xs font-medium tracking-tight transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 select-none whitespace-nowrap"
@@ -48,25 +55,28 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
                 color: isActive ? '#1d1d1f' : '#86868b'
               }}
             >
-              {/* Animated background pill for active state */}
+              {/* Single authoritative sliding pill for active tab */}
               {isActive && (
                 <motion.div
                   layoutId="activeDockIndicator"
-                  className="absolute inset-0 rounded-full bg-black/[0.08] border border-black/[0.05]"
-                  transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 rounded-full bg-black/[0.08] border border-black/[0.05] shadow-xs"
+                  transition={{
+                    type: 'spring',
+                    stiffness: 380,
+                    damping: 32,
+                    mass: 0.8
+                  }}
                 />
               )}
 
-              {/* Hover effect pill */}
+              {/* Gentle hover state for unselected tabs (local opacity, zero layout collision) */}
               {isHovered && !isActive && (
-                <motion.div
-                  layoutId="hoverDockIndicator"
-                  className="absolute inset-0 rounded-full bg-black/[0.035]"
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                <div
+                  className="absolute inset-0 rounded-full bg-black/[0.04] transition-opacity duration-150 pointer-events-none"
                 />
               )}
 
-              {/* Icon & Label */}
+              {/* Icon and Label */}
               <span className="relative z-10 flex items-center gap-1.5">
                 {getIcon(item.id)}
                 <span className="group-hover:text-[#1d1d1f] transition-colors">

@@ -15,7 +15,7 @@ import { ABOUT_CONFIG } from '../../config/about.config';
  */
 export default function JourneySection() {
   const { journey } = ABOUT_CONFIG;
-  const defaultMilestone = journey.milestones.find((m) => m.id === 'where-i-am-now') || journey.milestones[5] || journey.milestones[0];
+  const defaultMilestone = journey.milestones.find((m) => m.id === 'where-i-am-now') || journey.milestones[4] || journey.milestones[0];
   const [activeMilestoneId, setActiveMilestoneId] = useState(defaultMilestone.id);
   const scrollContainerRef = useRef(null);
 
@@ -60,22 +60,26 @@ export default function JourneySection() {
           </p>
         </div>
 
-        {/* Evolution Pill Tags */}
-        <div className="flex items-center gap-1.5 p-1 bg-black/[0.03] rounded-full border border-black/[0.06] self-start md:self-auto select-none">
-          {journey.evolutionTrack.map((step, idx) => (
-            <React.Fragment key={step}>
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-medium text-[#141416] bg-white shadow-2xs">
-                {step}
-              </span>
-              {idx < journey.evolutionTrack.length - 1 && (
-                <span className="text-xs text-[#86868b] px-0.5">→</span>
-              )}
-            </React.Fragment>
-          ))}
+        {/* Scroll Controls for Desktop */}
+        <div className="hidden md:flex items-center gap-2 select-none">
+          <button
+            onClick={() => handleScroll('left')}
+            aria-label="Scroll left"
+            className="w-9 h-9 rounded-full bg-white border border-black/[0.08] hover:border-black/30 flex items-center justify-center text-[#1d1d1f] hover:bg-black/5 transition-colors shadow-2xs"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            onClick={() => handleScroll('right')}
+            aria-label="Scroll right"
+            className="w-9 h-9 rounded-full bg-white border border-black/[0.08] hover:border-black/30 flex items-center justify-center text-[#1d1d1f] hover:bg-black/5 transition-colors shadow-2xs"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </motion.div>
 
-      {/* Horizontal Milestone Track with Navigation Controls */}
+      {/* Horizontal Milestone Track */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,25 +87,7 @@ export default function JourneySection() {
         transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="relative w-full"
       >
-        {/* Scroll Controls for Desktop */}
-        <div className="hidden lg:flex items-center justify-end gap-2 mb-1.5">
-          <button
-            onClick={() => handleScroll('left')}
-            aria-label="Scroll left"
-            className="w-8 h-8 rounded-full bg-white border border-black/[0.08] hover:border-black/30 flex items-center justify-center text-[#1d1d1f] hover:bg-black/5 transition-colors shadow-2xs"
-          >
-            <ChevronLeft size={16} />
-          </button>
-          <button
-            onClick={() => handleScroll('right')}
-            aria-label="Scroll right"
-            className="w-8 h-8 rounded-full bg-white border border-black/[0.08] hover:border-black/30 flex items-center justify-center text-[#1d1d1f] hover:bg-black/5 transition-colors shadow-2xs"
-          >
-            <ChevronRight size={16} />
-          </button>
-        </div>
-
-        {/* Horizontal Track Container — with pt-4 to prevent clipping active card top & badges */}
+        {/* Horizontal Track Container: with pt-4 to prevent clipping active card top & badges */}
         <div
           ref={scrollContainerRef}
           className="w-full overflow-x-auto pt-4 pb-4 scrollbar-none snap-x snap-mandatory flex gap-4 sm:gap-5 select-none pointer-events-auto"
@@ -255,17 +241,38 @@ export default function JourneySection() {
 
           {/* Right Active Milestone Visual (Span 5) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] aspect-[16/10] rounded-2xl overflow-hidden bg-[#e5e5ea] border border-black/[0.06] shadow-xs select-none">
-              <motion.img
-                key={activeMilestone.image}
-                src={activeMilestone.image}
-                alt={activeMilestone.title}
-                initial={{ opacity: 0, scale: 1.03 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            <div 
+              className={`relative w-full max-w-[340px] aspect-[16/10] rounded-2xl overflow-hidden border border-black/[0.08] shadow-xs select-none ${
+                activeMilestone.imageBg ? 'flex items-center justify-center' : 'bg-[#e5e5ea]'
+              }`}
+              style={{ backgroundColor: activeMilestone.imageBg || undefined }}
+            >
+              {activeMilestone.imageBg ? (
+                <>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.14)_0%,transparent_70%)] pointer-events-none" />
+                  <motion.img
+                    key={activeMilestone.image}
+                    src={activeMilestone.image}
+                    alt={activeMilestone.title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-auto h-auto max-w-[170px] max-h-[75px] object-contain relative z-10 drop-shadow-[0_4px_20px_rgba(245,158,11,0.25)]"
+                  />
+                </>
+              ) : (
+                <motion.img
+                  key={activeMilestone.image}
+                  src={activeMilestone.image}
+                  alt={activeMilestone.title}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: activeMilestone.imagePosition || 'center' }}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-4 right-4 z-10 flex items-center justify-between text-white/90">
                 <span className="text-[11px] font-mono tracking-tight text-white/90 truncate">
                   {activeMilestone.subtitle}

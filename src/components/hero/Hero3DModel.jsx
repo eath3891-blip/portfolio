@@ -1,23 +1,23 @@
 import React, { useState, useRef, useCallback } from 'react';
 
 /**
- * Hero3DModel — Truly frameless, chrome-free 3D float.
+ * Hero3DModel: Truly frameless, chrome-free 3D float.
  *
  * Sketchfab chrome layout inside the iframe:
- *   • Title bar   → top ~44px
- *   • Bottom bar  → bottom ~44px  ← what the user was seeing
- *   • Corner logo → bottom-left ~40×40px, bottom-right ~40×40px
+ *   * Title bar   -> top ~44px
+ *   * Bottom bar  -> bottom ~44px  <- what the user was seeing
+ *   * Corner logo -> bottom-left ~40x40px, bottom-right ~40x40px
  *
  * Two-layer strategy to permanently hide all chrome:
  *
- *   LAYER 1 — iframe oversized & pushed far off viewport:
- *     top: -15vh  → title bar pushed 15vh above screen top
- *     height: 135vh → bottom edge at 120vh (20vh below screen bottom)
- *     right: -8vw  → right badge pushed off right edge
- *     width: 64vw  → left edge at ~44vw (left badge is inside viewport here,
+ *   LAYER 1: iframe oversized and pushed far off viewport:
+ *     top: -15vh  -> title bar pushed 15vh above screen top
+ *     height: 135vh -> bottom edge at 120vh (20vh below screen bottom)
+ *     right: -8vw  -> right badge pushed off right edge
+ *     width: 64vw  -> left edge at ~44vw (left badge is inside viewport here,
  *                     which is why shield divs are needed)
  *
- *   LAYER 2 — fixed same-color shield divs placed exactly where Sketchfab
+ *   LAYER 2: fixed same-color shield divs placed exactly where Sketchfab
  *     chrome can bleed through. They are the same color as the page (#fbfbfd),
  *     invisible to the eye, pointer-events: none so they don't block interaction.
  *     Shields cover: bottom strip of right half, top strip of right half.

@@ -5,7 +5,7 @@ import Hero3DModel from './Hero3DModel';
 import CompanyLogoScroller from './CompanyLogoScroller';
 
 /**
- * Hero Section — Fluid Full-Viewport Layout
+ * Hero Section: Fluid Full-Viewport Layout
  *
  * Issues fixed:
  *  1. Large screen: content was capped at max-w-[1360px] and centered,
@@ -17,10 +17,10 @@ import CompanyLogoScroller from './CompanyLogoScroller';
  *     flex so nothing overflows or requires scroll on any desktop size.
  *
  * Layout reference: media_1788864477332.png
- * - TopBar   → full-width, absolute top
- * - Upper    → Quote left / 3D model right (flex-1, takes remaining space)
- * - Lower    → Manoj intro left / Companies right (auto height, bottom-aligned)
- * - Dock nav → floating, outside this section
+ * - TopBar   -> full-width, absolute top
+ * - Upper    -> Quote left / 3D model right (flex-1, takes remaining space)
+ * - Lower    -> Manoj intro left / Companies right (auto height, bottom-aligned)
+ * - Dock nav -> floating, outside this section
  */
 export default function Hero({ onReplayIntro }) {
   return (
@@ -48,10 +48,10 @@ export default function Hero({ onReplayIntro }) {
         "
       >
 
-        {/* ── UPPER TIER: Quote ↔ 3D Model ─────────────────────────────── */}
+        {/* ── UPPER TIER: Quote <-> 3D Model ─────────────────────────────── */}
         <div className="grid grid-cols-2 items-center gap-[4vw] flex-1 min-h-0">
 
-          {/* Quote — left, raised above fixed iframe (z-30 > iframe z-15) */}
+          {/* Quote: left, raised above fixed iframe (z-30 > iframe z-15) */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,11 +69,11 @@ export default function Hero({ onReplayIntro }) {
               className="text-[#55555c] font-normal"
               style={{ fontSize: 'clamp(12px, 1.1vw, 17px)' }}
             >
-              — Tony Stark
+              - Tony Stark
             </p>
           </motion.div>
 
-          {/* 3D Ironman Helmet — right */}
+          {/* 3D Ironman Helmet: right */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -96,13 +96,13 @@ export default function Hero({ onReplayIntro }) {
 
         </div>
 
-        {/* ── LOWER TIER: Manoj intro ↔ Companies ──────────────────────── */}
+        {/* ── LOWER TIER: Manoj intro <-> Companies ──────────────────────── */}
         <div
           className="grid grid-cols-2 items-end gap-[4vw] pb-[72px] relative z-30"
         /* 72px gap for the bottom dock nav */
         >
 
-          {/* Introducing Manoj Bhatt — left */}
+          {/* Introducing Manoj Bhatt: left */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export default function Hero({ onReplayIntro }) {
               Product Designer · 3+ years · Enterprise UX · AI, Analytics &amp; Complex Workflows
             </p>
 
-            {/* Vertical-border callout — shifted down */}
+            {/* Vertical-border callout: shifted down */}
             <div
               className="border-l-2 border-black/70 pl-3 py-0.5 mt-[3.5vh] text-[#55555c] leading-snug"
               style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}
@@ -140,7 +140,7 @@ export default function Hero({ onReplayIntro }) {
             </div>
           </motion.div>
 
-          {/* Companies I've Worked With — pushed to right edge */}
+          {/* Companies I've Worked With: pushed to right edge */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}

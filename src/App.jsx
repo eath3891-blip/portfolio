@@ -18,21 +18,31 @@ export default function App() {
   const [forceReplayIntro, setForceReplayIntro] = useState(false);
   const [activeSection, setActiveSection] = useState('home'); // 'home' | 'projects' | 'about' | 'play'
 
+  // Ensure browser does not perform automatic scroll jumping on hash navigation
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   // Scroll to top whenever user switches sections
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeSection]);
 
-  // Sync hash routing so external deep-links (e.g. #/projects/transorg-iq) open directly
+  // Sync hash routing so external deep-links (e.g. #/projects/sentinel-ai) open directly
   useEffect(() => {
     const checkHash = () => {
       const hash = window.location.hash;
+      window.scrollTo({ top: 0, behavior: 'instant' });
       if (hash.startsWith('#/projects')) {
         setActiveSection('projects');
       } else if (hash.startsWith('#/about')) {
         setActiveSection('about');
       } else if (hash.startsWith('#/play')) {
         setActiveSection('play');
+      } else if (!hash || hash === '#/' || hash === '#') {
+        setActiveSection('home');
       }
     };
     checkHash();
@@ -41,12 +51,16 @@ export default function App() {
   }, []);
 
   const handleSelectSection = (sectionId) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     setActiveSection(sectionId);
     if (sectionId === 'home') {
       window.location.hash = '';
     } else {
       window.location.hash = `#/${sectionId}`;
     }
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
   };
 
   const handleIntroComplete = () => {
@@ -102,10 +116,16 @@ export default function App() {
         />
       )}
 
-      {/* Dynamic View Container with Smooth Apple-Style Transitions */}
-      <AnimatePresence mode="wait">
+      {/* Dynamic View Container with Smooth, Instant Apple-Style Transition */}
+      <motion.div
+        key={activeSection}
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full"
+      >
         {renderActiveView()}
-      </AnimatePresence>
+      </motion.div>
 
       {/* 
         Persistent Floating Apple-Style Navigation Dock:

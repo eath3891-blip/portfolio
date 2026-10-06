@@ -119,7 +119,7 @@ export const CASE_STUDIES_CONFIG = {
     deliverables: "Design System, 40+ Enterprise Screens, Interaction Specs, Prototyping",
     accentColor: "#2563eb",
     visualType: "analytics",
-    nextProjectId: "registerkaro",
+    nextProjectId: "codash",
 
     executiveSummary:
       "TransOrg IQ is an enterprise intelligence layer that translates complex data models and machine learning pipelines into conversational insights. Instead of submitting ad-hoc SQL requests or deciphering dense dashboards, business executives and analysts query their petabyte data warehouse in plain English, receiving verifiable answers with confidence scores and automated drill-down paths.",

@@ -22,12 +22,17 @@ export default function ProjectsPage({ onBackToHome, onReplayIntro }) {
       const hash = window.location.hash;
       if (hash.startsWith('#/projects/')) {
         const id = hash.replace('#/projects/', '');
-        if (['sentinel-ai', 'transorg-iq', 'registerkaro', 'trybl', 'fixora', 'codash'].includes(id)) {
+        if (['sentinel-ai', 'transorg-iq', 'codash', 'fixora', 'registerkaro'].includes(id)) {
           setActiveCaseStudyId(id);
+          return;
+        } else {
+          // If accessing invalid or non-existent case study ID, redirect to main projects
+          window.location.hash = '#/projects';
+          setActiveCaseStudyId(null);
           return;
         }
       }
-      if (hash === '#/projects') {
+      if (!hash.startsWith('#/projects/')) {
         setActiveCaseStudyId(null);
       }
     };
@@ -61,13 +66,7 @@ export default function ProjectsPage({ onBackToHome, onReplayIntro }) {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -15 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] pb-36"
-    >
+    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] pb-36">
       {/* Top Bar for status and resume action */}
       <TopBar onReplayIntro={onReplayIntro || onBackToHome} />
 
@@ -90,7 +89,7 @@ export default function ProjectsPage({ onBackToHome, onReplayIntro }) {
           <MoreOfMyWork />
         </div>
       </main>
-    </motion.div>
+    </div>
   );
 }
 

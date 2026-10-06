@@ -120,14 +120,14 @@ export default function FeaturedProjectCard({ project, index, onSelect }) {
       case 'registerkaro':
         return {
           gradient: 'from-[#065f46] via-[#059669] to-[#34d399]',
-          sphereBg: 'bg-gradient-to-tr from-emerald-600 to-teal-300',
-          metricLabel: 'Onboarding Lift',
-          metricValue: '+18% Growth',
+          sphereBg: 'bg-gradient-to-tr from-emerald-600 to-teal-400',
+          metricLabel: 'GUIDED ONBOARDING',
+          metricValue: '5 Milestones',
           metricColor: 'text-emerald-700',
-          balanceLabel: 'GOVTECH ONBOARDING',
+          balanceLabel: 'GOVTECH & FINTECH',
           avatars: [
-            { icon: CheckCircle2, label: 'MCA Sync', bg: 'bg-emerald-100 text-emerald-700' },
-            { icon: ShieldCheck, label: 'DIN KYC', bg: 'bg-teal-100 text-teal-700' },
+            { icon: CheckCircle2, label: 'MCA Registry', bg: 'bg-emerald-100 text-emerald-700' },
+            { icon: ShieldCheck, label: 'Director KYC', bg: 'bg-teal-100 text-teal-700' },
             { icon: Lock, label: 'Digital Sign', bg: 'bg-cyan-100 text-cyan-700' },
             { icon: Activity, label: 'RoC Gateway', bg: 'bg-blue-100 text-blue-700' },
             { icon: Sparkles, label: '100% Paperless', bg: 'bg-amber-100 text-amber-700' }

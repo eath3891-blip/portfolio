@@ -32,13 +32,7 @@ export default function AboutPage({ onBackToHome, onReplayIntro, onNavigateToPro
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -15 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] pb-36"
-    >
+    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] flex flex-col">
       {/* Top Bar with Open to Work & Download Resume pills */}
       <TopBar onReplayIntro={onReplayIntro || onBackToHome} />
 
@@ -64,10 +58,10 @@ export default function AboutPage({ onBackToHome, onReplayIntro, onNavigateToPro
 
         {/* 7. What's Next: "And now, I'm building." */}
         <ExploringSection />
-
-        {/* 8. Final CTA: "You can stop scrolling. You found the designer." */}
-        <AboutFinalCTA onNavigateToProjects={onNavigateToProjects} />
       </main>
-    </motion.div>
+
+      {/* 8. Final CTA: Full viewport width & reaching the bottom of the page */}
+      <AboutFinalCTA onNavigateToProjects={onNavigateToProjects} />
+    </div>
   );
 }

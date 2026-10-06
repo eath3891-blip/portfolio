@@ -1,14 +1,35 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Medusae } from 'antigravity-particle';
+import 'antigravity-particle/medusae.css';
 import { PROJECTS_CONFIG } from '../../config/projects.config';
 import FeaturedProjectCard from './FeaturedProjectCard';
-import FeaturedParticlesBackground from './FeaturedParticlesBackground';
+
+const medusaeConfig = {
+  particles: {
+    colorBase: '#12070a',
+    colorOne: '#d91e2b',
+    colorTwo: '#df9b20',
+    colorThree: '#f6c445',
+    baseSize: 0.011,
+    activeSize: 0.024,
+    blobScaleX: 0.85,
+    blobScaleY: 0.55,
+  },
+  cursor: {
+    strength: 4,
+    dragFactor: 0.02,
+  },
+  background: {
+    color: '#0b0b0e',
+  }
+};
 
 /**
  * FeaturedProjects:
  * Section 01 of the Projects page.
- * Arranges 3 prominent editorial case-study cards horizontally across desktop view.
- * Features an interactive particle canvas with mouse deflection and proximity connections.
+ * Arranges 4 prominent editorial case-study cards across desktop view.
+ * Features an interactive Google Antigravity Medusae particle swarm background.
  */
 export default function FeaturedProjects({ onSelectProject }) {
   const { featuredSection, featuredProjects } = PROJECTS_CONFIG;
@@ -20,13 +41,18 @@ export default function FeaturedProjects({ onSelectProject }) {
       aria-labelledby="featured-projects-heading"
       className="w-full bg-[#0b0b0e] text-white py-16 sm:py-20 md:py-28 border-y border-black/10 relative overflow-hidden"
     >
-      {/* Interactive Canvas Particles Background with Mouse Deflection */}
-      <FeaturedParticlesBackground containerRef={sectionRef} />
+      {/* Interactive Google Antigravity Medusae Particles Background */}
+      <div 
+        aria-hidden="true" 
+        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+      >
+        <Medusae config={medusaeConfig} style={{ width: '100%', height: '100%' }} />
+      </div>
 
-      {/* Ambient lighting pools for liquid glass refraction */}
-      <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient lighting pools for warm red and gold refraction */}
+      <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
+      <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
 
       {/* Subtle top ambient sheen */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-40 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none z-[1]" />
@@ -58,8 +84,8 @@ export default function FeaturedProjects({ onSelectProject }) {
           </p>
         </motion.div>
 
-        {/* 3 Prominent Case Study Cards on Desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8 items-stretch">
+        {/* 4 Prominent Case Study Cards in a 2x2 Grid on Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {featuredProjects.map((project, idx) => (
             <FeaturedProjectCard
               key={project.id}

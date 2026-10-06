@@ -17,14 +17,14 @@ export const ABOUT_CONFIG = {
       {
         id: "portrait-casual",
         url: "/images/about/manoj-casual.jpg",
-        alt: "Manoj Bhatt — Product Designer",
+        alt: "Manoj Bhatt, Product Designer",
         caption: "Manoj Bhatt",
         objectPosition: "center 25%"
       },
       {
         id: "portrait-formal",
         url: "/images/about/manoj-formal.jpg",
-        alt: "Manoj Bhatt — Product Designer",
+        alt: "Manoj Bhatt, Product Designer",
         caption: "Manoj Bhatt",
         objectPosition: "center 22%"
       },
@@ -60,38 +60,22 @@ export const ABOUT_CONFIG = {
       {
         id: "the-beginning",
         phase: "Phase 01",
-        title: "The Beginning",
-        subtitle: "Curiosity Before the Discipline",
-        period: "Early Curiosity",
-        oneLiner: "Recreating keypad phone screens on paper notebooks to understand hierarchy and flow.",
-        deepDive: "Drawing out keypad phone menus by hand, testing how visual hierarchies guided fingers before I knew the discipline had a formal name.",
-        scopeTag: "UI Curiosity",
+        title: "The Beginning & Learning the Craft",
+        subtitle: "From Paper Sketches to Digital Systems",
+        period: "Curiosity to Final Sem",
+        oneLiner: "From childhood paper sketches to mastering typography, 8pt grids, and component systems during my undergraduate final semester.",
+        deepDive: "Started with childhood curiosity sketching phone screens on paper, then during the final semester of my undergraduate degree, committed to disciplined self-learning across Photoshop, XD, and Figma to master typography, 8pt grids, and scalable components.",
+        scopeTag: "UI & Visual Craft",
         story: {
-          context: "Before I knew product design was a formal profession, I was fascinated by how small screens organized information.",
-          workDone: "I spent hours sketching keypad phone interfaces in notebooks, mapping menu trees, and drawing how icons and typography should guide someone's fingers.",
-          whatChanged: "I realized early on that digital products were not just visual decoration. They were structured pathways built to guide human attention."
-        },
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: "learning-the-craft",
-        phase: "Phase 02",
-        title: "Learning the Craft",
-        subtitle: "From Making Screens to Understanding Systems",
-        period: "Foundation",
-        oneLiner: "Moving from visual recreation into systematic UI patterns, type scales, and component structure.",
-        deepDive: "Studied typography, spacing tokens, and component architecture through daily hands-on practice, progressing from Photoshop to XD to Figma.",
-        scopeTag: "Visual & Interaction",
-        story: {
-          context: "Post-graduation, I committed to mastering interface design through disciplined, hands-on self-education.",
-          workDone: "I progressed through Photoshop, Adobe XD, and finally Figma, studying typography, 8pt spacing grids, and component architecture by rebuilding real products daily.",
-          whatChanged: "Design stopped feeling like making individual screens. I began thinking in scalable design systems, reusable components, and clear hierarchy."
+          context: "What began as childhood curiosity sketching keypad phone menus on paper matured into a focused pursuit during the final semester of my undergraduate degree, when I committed to mastering interface design through disciplined self-education.",
+          workDone: "I progressed from paper layouts through Photoshop, Adobe XD, and finally Figma, rigorously studying typography, 8pt spacing grids, and component architecture by rebuilding real products daily.",
+          whatChanged: "Design stopped feeling like drawing isolated screens. I realized interfaces were scalable systems built to guide human attention through reusable components and structured hierarchy."
         },
         image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80"
       },
       {
         id: "first-industry-experience",
-        phase: "Phase 03",
+        phase: "Phase 02",
         title: "First Industry Experience",
         subtitle: "Learning to Design for Real Products",
         period: "2023 to 2025",
@@ -103,11 +87,12 @@ export const ABOUT_CONFIG = {
           workDone: "I redesigned core interfaces for Trybl, shipped lightweight Telegram Mini Apps, and crafted digital experiences for Team Blue Rising, co-owned by Virat Kohli.",
           whatChanged: "Working in production taught me that design lives within tight technical constraints and high user expectations. Speed, clarity, and delight had to coexist."
         },
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+        image: "/images/about/zone-logo.png",
+        imageBg: "#0a0a0c"
       },
       {
         id: "broadening-the-perspective",
-        phase: "Phase 04",
+        phase: "Phase 03",
         title: "Broadening the Perspective",
         subtitle: "From Interfaces to Outcomes",
         period: "2025",
@@ -120,11 +105,12 @@ export const ABOUT_CONFIG = {
           impact: "Reduced onboarding drop-off by 18% through clearer step pacing and simplified compliance inputs.",
           whatChanged: "I stopped judging work only by how it looked in Figma and started measuring it by user behavior, conversion friction, and measurable business outcomes."
         },
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+        image: "/images/about/registerkaro-whiteboard.png",
+        imagePosition: "center 28%"
       },
       {
         id: "going-deeper",
-        phase: "Phase 05",
+        phase: "Phase 04",
         title: "Going Deeper",
         subtitle: "Adding Research to Execution",
         period: "2024 to Present",
@@ -138,11 +124,12 @@ export const ABOUT_CONFIG = {
           workDone: "I enrolled in the M.Des in UX Design program at DIT University, pursuing advanced academic study concurrently alongside my full-time industry design roles.",
           whatChanged: "This dual track bridged daily product execution with behavioral research, qualitative user interviews, and cognitive ergonomics, making my design rationale far more rigorous."
         },
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+        image: "/images/about/mdes-presentation.png",
+        imagePosition: "center 35%"
       },
       {
         id: "where-i-am-now",
-        phase: "Phase 06",
+        phase: "Phase 05",
         title: "Where I Am Now",
         subtitle: "Designing for Complexity",
         period: "2026 to Present",
@@ -155,11 +142,12 @@ export const ABOUT_CONFIG = {
           impact: "Designed 5+ core workflows and 40+ enterprise AI screens, translating dense data models into intuitive, actionable decision tools.",
           whatChanged: "Designing for enterprise AI requires understanding non-deterministic systems, explainability, and user trust. The challenge is not decorating data, but turning algorithmic complexity into intuitive decisions."
         },
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+        image: "/images/about/transorg-office.jpg",
+        imagePosition: "center 25%"
       },
       {
         id: "whats-next",
-        phase: "Phase 07",
+        phase: "Phase 06",
         title: "What's Next",
         subtitle: "Beyond Static Screens",
         period: "Continuous",
@@ -171,7 +159,8 @@ export const ABOUT_CONFIG = {
           workDone: "I actively experiment with modern development tools like Antigravity, Lovable, and direct code workflows to build functional, interactive prototypes rather than static handoffs.",
           whatChanged: "The future of product design belongs to designers who can bridge strategy, interaction, and working code. It allows me to test real software mechanics immediately."
         },
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+        image: "/images/about/antigravity-setup.png",
+        imagePosition: "center 42%"
       }
     ]
   },
@@ -311,8 +300,8 @@ export const ABOUT_CONFIG = {
     experimentLabel: "Playing with",
     tags: ["Antigravity", "Lovable", "Rapid prototyping"],
     visual: {
-      url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      alt: "Product prototype and building workbench experiment",
+      url: "/images/about/building-experiments.jpg",
+      alt: "AI rapid prototyping experiment with Antigravity and Lovable",
       label: "Recent experiment"
     }
   },

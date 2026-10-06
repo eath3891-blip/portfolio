@@ -3,21 +3,23 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import { ABOUT_CONFIG } from '../../config/about.config';
 import { PORTFOLIO_CONFIG } from '../../config/portfolio.config';
+import Ballpit from '../ui/Ballpit';
 
 /**
  * AboutFinalCTA:
  * Final closing section of the portfolio.
  * 
  * Visually structured into:
- * 1. Dominant 2-line headline:
+ * 1. Interactive 3D Ballpit physics animation in the background
+ * 2. Dominant 2-line headline:
  *    Line 1 (Hook): "You can stop scrolling." (refined charcoal, weight 600)
  *    Line 2 (Payoff): "You found the designer." (deep obsidian black, weight 700)
- * 2. Secondary supporting line:
+ * 3. Secondary supporting line:
  *    "Have a complicated product problem? Let's talk."
- * 3. Tertiary action pill row:
+ * 4. Tertiary action pill row:
  *    - Primary: View Selected Projects
  *    - Secondary: Download Resume
- *    - Direct Contact: manojbh476@gmail.com (with natural letter-spacing: 0, 12px gap & aligned 48px height)
+ *    - Direct Contact: manojbh476@gmail.com
  */
 export default function AboutFinalCTA({ onNavigateToProjects }) {
   const { finalCta } = ABOUT_CONFIG;
@@ -50,25 +52,60 @@ export default function AboutFinalCTA({ onNavigateToProjects }) {
 
   return (
     <section 
+      id="closing-cta"
       aria-label="Closing Call to Action" 
-      className="w-full pt-20 sm:pt-28 md:pt-36 pb-24 sm:pb-32 md:pb-40 flex flex-col items-center text-center select-none"
+      className="relative w-full min-h-[560px] sm:min-h-[620px] pt-12 sm:pt-16 md:pt-20 pb-28 sm:pb-36 flex flex-col items-center text-center select-none overflow-hidden"
     >
-      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-8 md:px-12 flex flex-col items-center">
+      {/* 3D Ballpit Physics Animation Background */}
+      <div 
+        aria-hidden="true" 
+        className="absolute inset-0 w-full h-full pointer-events-auto z-0 overflow-hidden"
+      >
+        <Ballpit
+          count={55}
+          gravity={0.007}
+          friction={0.997}
+          wallBounce={0.88}
+          followCursor={false}
+          colors={[
+            0xa3121e,
+            0xd41c2c,
+            0xdf9b20,
+            0xf5c342,
+            0xa3121e,
+            0xd41c2c,
+            0xdf9b20,
+            0xf5c342,
+            0xa3121e,
+            0xd41c2c,
+            0xdf9b20,
+            0xf5c342
+          ]}
+          materialParams={{
+            metalness: 0.7,
+            roughness: 0.22,
+            clearcoat: 1,
+            clearcoatRoughness: 0.1
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 sm:px-8 md:px-12 flex flex-col items-center pointer-events-none">
         
-        {/* Dominant Final Headline — Guaranteed Exactly Two Visual Lines on Desktop */}
-        <h2 className="w-full flex flex-col items-center font-display leading-[0.96] sm:leading-[0.98]">
+        {/* Dominant Final Headline: Guaranteed Exactly Two Visual Lines on Desktop */}
+        <h2 className="w-full flex flex-col items-center font-display leading-[0.96] sm:leading-[0.98] drop-shadow-[0_4px_30px_rgba(255,255,255,0.95)]">
           {/* Line 1: Hook */}
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="block sm:whitespace-nowrap font-semibold text-[#48484a] text-[clamp(1.95rem,6.8vw,6.65rem)] tracking-[-0.032em]"
+            className="block sm:whitespace-nowrap font-semibold text-[#3a3a3c] text-[clamp(1.95rem,6.8vw,6.65rem)] tracking-[-0.032em]"
           >
             You can stop scrolling.
           </motion.span>
 
-          {/* Line 2: Payoff — Increased visual & emotional weight */}
+          {/* Line 2: Payoff, Increased visual & emotional weight */}
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,13 +117,13 @@ export default function AboutFinalCTA({ onNavigateToProjects }) {
           </motion.span>
         </h2>
 
-        {/* Secondary Supporting Line — Calm, Muted Transition */}
+        {/* Secondary Supporting Line: Calm, Muted Transition */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.65, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[17px] sm:text-[19px] md:text-[21px] font-normal text-[#6e6e73] tracking-[-0.012em] leading-[1.45] max-w-xl mt-8 sm:mt-10 md:mt-12"
+          className="text-[17px] sm:text-[19px] md:text-[21px] font-normal text-[#48484a] tracking-[-0.012em] leading-[1.45] max-w-xl mt-8 sm:mt-10 md:mt-12 bg-white/70 backdrop-blur-[2px] px-4 py-1 rounded-full shadow-2xs"
         >
           {finalCta.supportingLine}
         </motion.p>
@@ -97,7 +134,7 @@ export default function AboutFinalCTA({ onNavigateToProjects }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.65, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-8 sm:mt-10 md:mt-11"
+          className="pointer-events-auto flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-8 sm:mt-10 md:mt-11"
         >
           {/* Primary Action: View Selected Projects */}
           <button
@@ -113,23 +150,23 @@ export default function AboutFinalCTA({ onNavigateToProjects }) {
           <button
             type="button"
             onClick={handleDownloadResume}
-            className="inline-flex items-center justify-center gap-2.5 h-12 px-6 rounded-full bg-white hover:bg-black hover:text-white text-[#1d1d1f] text-[15px] font-semibold tracking-[-0.01em] border border-black/[0.1] hover:border-black shadow-2xs hover:scale-[1.015] active:scale-[0.985] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 shrink-0"
+            className="inline-flex items-center justify-center gap-2.5 h-12 px-6 rounded-full bg-white/90 backdrop-blur-md hover:bg-black hover:text-white text-[#1d1d1f] text-[15px] font-semibold tracking-[-0.01em] border border-black/[0.1] hover:border-black shadow-2xs hover:scale-[1.015] active:scale-[0.985] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 shrink-0"
           >
             <Download size={17} strokeWidth={2} />
             <span>Download Resume</span>
           </button>
 
-          {/* Direct Email Action Pill — Opens Gmail compose directly with TO: prefilled */}
+          {/* Direct Email Action Pill: Opens Gmail compose directly with TO: prefilled */}
           <a
             href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(finalCta.directEmail)}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Email ${finalCta.directEmail} via Gmail (opens in a new tab)`}
-            className="inline-flex items-center justify-center gap-3 h-12 px-6 rounded-full bg-black/[0.035] hover:bg-black/[0.07] text-[#1d1d1f] border border-black/[0.08] hover:border-black/20 shadow-2xs hover:scale-[1.015] active:scale-[0.985] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 shrink-0"
+            className="inline-flex items-center justify-center gap-3 h-12 px-6 rounded-full bg-white/90 backdrop-blur-md hover:bg-black hover:text-white text-[#1d1d1f] border border-black/[0.1] hover:border-black shadow-2xs hover:scale-[1.015] active:scale-[0.985] transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 shrink-0 group"
           >
-            <Mail size={17} strokeWidth={1.8} className="text-[#6e6e73] shrink-0" />
+            <Mail size={17} strokeWidth={1.8} className="text-[#6e6e73] group-hover:text-white shrink-0 transition-colors duration-200" />
             <span 
-              className="text-[15px] font-normal text-[#1d1d1f] select-text tracking-[0.038em]"
+              className="text-[15px] font-normal select-text tracking-[0.038em]"
               style={{ letterSpacing: '0.038em', fontVariantNumeric: 'tabular-nums' }}
             >
               {finalCta.directEmail}

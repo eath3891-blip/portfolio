@@ -73,7 +73,7 @@ export default function FixoraCaseStudy({ onBackToProjects, onNavigateCaseStudy 
     { id: 'principles', label: '05 UX Principles' },
     { id: 'experience', label: '06 Core Experience' },
     { id: 'conversation', label: '07 AI Conversation' },
-    { id: 'architecture', label: '08 How It Works Technically' },
+    { id: 'architecture', label: '08 Tech Specs' },
     { id: 'decisions', label: '09 Decisions' },
     { id: 'validation', label: '10 Validation' }
   ];
@@ -184,39 +184,39 @@ export default function FixoraCaseStudy({ onBackToProjects, onNavigateCaseStudy 
           </div>
         </div>
 
-        {/* Row 2: Sticky Chapter Sub-Nav with Reading Progress */}
-        <div className="w-full border-t border-black/[0.04] bg-[#fbfbfd]/80 overflow-x-auto scrollbar-none">
-          <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-11 flex items-center gap-1 sm:gap-2 whitespace-nowrap min-w-max">
-            {chapters.map((ch) => {
-              const isActive = activeNav === ch.id;
-              return (
-                <button
-                  key={ch.id}
-                  onClick={() => scrollToSection(ch.id)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 ${
-                    isActive
-                      ? 'bg-[#141416] text-white font-semibold shadow-xs'
-                      : 'text-[#66666e] hover:text-[#141416] hover:bg-black/[0.04]'
-                  }`}
-                >
-                  {ch.label}
-                </button>
-              );
-            })}
+        {/* Row 2: Horizontal Chapter Sub-Navigation (Aligned Edge-to-Edge with 10 Steps) */}
+        <nav className="w-full border-t border-black/[0.06] bg-[#fbfbfd]/90 py-2 relative">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-12 w-full">
+            <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar scrollbar-none w-full">
+              {chapters.map((ch) => {
+                const isActive = activeNav === ch.id;
+                return (
+                  <button
+                    key={ch.id}
+                    onClick={() => scrollToSection(ch.id)}
+                    className={`px-2 py-1 xl:px-2.5 rounded-full text-[11px] xl:text-[11.5px] font-mono transition-all duration-200 whitespace-nowrap shrink-0 lg:shrink-0 focus:outline-none ${
+                      isActive
+                        ? 'bg-black text-white shadow-xs font-semibold'
+                        : 'text-[#66666e] hover:text-[#141416] hover:bg-black/[0.04]'
+                    }`}
+                  >
+                    {ch.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Reading Progress Indicator */}
-          <div className="w-full h-0.5 bg-black/[0.04]">
-            <div
-              className="h-full bg-blue-600 transition-all duration-150 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
-        </div>
+          {/* Reading Scroll Progress Bar */}
+          <div 
+            className="absolute bottom-0 left-0 h-[2px] bg-blue-600 transition-all duration-150 pointer-events-none"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </nav>
       </header>
 
       {/* Main Content Stage */}
-      <div className="max-w-[1080px] mx-auto px-6 md:px-12 pt-12 md:pt-16 flex flex-col gap-24 md:gap-32">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 pt-16 md:pt-24 flex flex-col gap-32 md:gap-40">
 
         {/* CHAPTER 01: OVERVIEW & HERO */}
         <section id="overview" className="flex flex-col gap-8 scroll-mt-32">
@@ -1352,30 +1352,37 @@ export default function FixoraCaseStudy({ onBackToProjects, onNavigateCaseStudy 
           </div>
         </section>
 
-        {/* FINAL CTA & TRANSITION */}
-        <section className="pt-16 pb-12 border-t border-black/[0.06] flex flex-col items-center text-center gap-6">
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#141416]">
-            Want to see how I think through another product?
-          </h3>
-
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => onNavigateCaseStudy && onNavigateCaseStudy('sentinel-ai')}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#141416] hover:bg-black text-white text-sm font-semibold tracking-tight shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all"
-            >
-              <span>Explore Sentinel AI Case Study</span>
-              <ArrowRight size={16} />
-            </button>
-
-            <button
-              onClick={onBackToProjects}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#141416] text-sm font-medium transition-all"
-            >
-              <ArrowLeft size={16} />
-              <span>Back to all projects</span>
-            </button>
+        {/* FINAL CTA & TRANSITION TO REGISTERKARO */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-[#0b1120] text-white border border-white/10 shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-mono font-semibold uppercase">
+              <span>Next Case Study 04</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              RegisterKaro: Customer Onboarding Portal
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+              Transforming business compliance and statutory incorporation from a fragmented 7-step ordeal into a guided 5-milestone digital onboarding experience with automated KYC.
+            </p>
           </div>
-        </section>
+
+          <button
+            onClick={() => onNavigateCaseStudy && onNavigateCaseStudy('registerkaro')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shrink-0"
+          >
+            <span>Explore RegisterKaro</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center pt-2">
+          <button
+            onClick={onBackToProjects}
+            className="text-xs font-mono text-[#86868b] hover:text-[#141416] transition-colors underline underline-offset-4"
+          >
+            Back to all projects
+          </button>
+        </div>
 
       </div>
     </div>

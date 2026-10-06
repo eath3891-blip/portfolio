@@ -38,6 +38,19 @@
   }
 }
 
+/* Universal scrollbar-none and no-scrollbar utilities across Chrome, Safari, Edge, Firefox */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+
 :root {
   --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;

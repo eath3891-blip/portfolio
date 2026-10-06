@@ -101,7 +101,7 @@ export const PORTFOLIO_CONFIG = {
     {
       number: "02",
       title: "Motion With Intent",
-      description: "Animations should communicate spatial state, causality, and continuity — never serving as mere ornamentation."
+      description: "Animations should communicate spatial state, causality, and continuity, never serving as mere ornamentation."
     },
     {
       number: "03",
@@ -112,19 +112,19 @@ export const PORTFOLIO_CONFIG = {
 
   timeline: [
     {
-      period: "2024 — Present",
+      period: "2024 to Present",
       role: "Lead Product Designer",
       company: "Consumer Product Labs",
       description: "Directing product design for high-scale consumer applications with a focus on conversion and interaction polish."
     },
     {
-      period: "2023 — 2024",
+      period: "2023 to 2024",
       role: "Senior UI/UX Designer",
       company: "Spatial Systems",
       description: "Led the design system team, bridging Figma components with code tokens across web and mobile platforms."
     },
     {
-      period: "2022 — 2023",
+      period: "2022 to 2023",
       role: "Product & Interaction Designer",
       company: "Studio Alpha",
       description: "Crafted early-stage prototypes, mobile UX architectures, and brand digital touchpoints for high-growth tech startups."

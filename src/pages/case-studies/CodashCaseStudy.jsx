@@ -110,14 +110,14 @@ export default function CodashCaseStudy({ onBackToProjects, onNavigateCaseStudy 
   const chapters = [
     { id: 'overview', label: '01 Overview' },
     { id: 'problem', label: '02 The Problem' },
-    { id: 'research', label: '03 Research & Discovery' },
-    { id: 'strategy', label: '04 Strategy & IA' },
-    { id: 'onboarding', label: '05 Candidate Onboarding' },
-    { id: 'interview', label: '06 Live Interview UX' },
-    { id: 'conversation', label: '07 Conversational AI' },
-    { id: 'tools', label: '08 Contextual Tools' },
-    { id: 'recruiter', label: '09 Recruiter Workflow' },
-    { id: 'trust', label: '10 Trust & Iteration' }
+    { id: 'research', label: '03 Research' },
+    { id: 'strategy', label: '04 Strategy' },
+    { id: 'onboarding', label: '05 Onboarding' },
+    { id: 'interview', label: '06 Live UX' },
+    { id: 'conversation', label: '07 AI Machine' },
+    { id: 'tools', label: '08 Tools' },
+    { id: 'recruiter', label: '09 Recruiter' },
+    { id: 'trust', label: '10 Outcomes' }
   ];
 
   // Dynamic scroll spy and reading progress listener
@@ -175,81 +175,84 @@ export default function CodashCaseStudy({ onBackToProjects, onNavigateCaseStudy 
       {/* ========================================================================= */}
       {/* 00: STICKY SUB-NAVIGATION & READING PROGRESS                             */}
       {/* ========================================================================= */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06] transition-all">
-        {/* Dynamic reading progress bar */}
-        <div 
-          className="h-[2.5px] bg-gradient-to-r from-[#1180FF] via-[#37D2E1] to-[#1180FF] transition-all duration-150"
-          style={{ width: `${scrollProgress}%` }}
-        />
+      <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#fbfbfd]/90 border-b border-black/[0.06] transition-all">
+        {/* Row 1: Global Navigation & Case Study Identity */}
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between w-full">
+          {/* Left: Back to Projects button */}
+          <button
+            onClick={onBackToProjects}
+            className="group inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#55555c] hover:text-[#141416] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded-full px-3 py-1.5 bg-black/[0.03] hover:bg-black/[0.06]"
+            aria-label="Back to all projects"
+          >
+            <ArrowLeft size={14} className="transition-transform duration-200 group-hover:-translate-x-1 text-[#86868b] group-hover:text-[#141416]" />
+            <span>Back to Projects</span>
+          </button>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 gap-3">
-            {/* Left: Back to Projects button */}
-            <button
-              onClick={onBackToProjects}
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-neutral-600 hover:text-black transition-colors px-2.5 py-1.5 rounded-lg hover:bg-black/5"
-            >
-              <ArrowLeft size={16} />
-              <span className="hidden sm:inline">Projects</span>
-            </button>
+          {/* Middle: Project title metadata */}
+          <div className="hidden md:flex items-center gap-2.5 text-xs font-mono text-[#86868b]">
+            <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 font-semibold border border-blue-500/20">
+              PRODUCT DESIGN / CASE STUDY
+            </span>
+            <span className="font-semibold text-[#141416]">Codash</span>
+            <span className="text-black/30">/</span>
+            <span>AI-Powered Interview Platform</span>
+          </div>
 
-            {/* Middle: Project title pill */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/[0.03] border border-black/[0.05]">
-              <span className="w-2 h-2 rounded-full bg-[#1180FF] animate-pulse" />
-              <span className="text-xs font-semibold text-[#141416] tracking-tight">
-                Codash
-              </span>
-              <span className="text-neutral-400 text-xs hidden md:inline">|</span>
-              <span className="text-neutral-500 text-xs hidden md:inline truncate max-w-[240px]">
-                AI-Powered Interview Platform
-              </span>
+          {/* Right: Role, Timeline & Share Action */}
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <div className="text-[11px] font-mono text-[#86868b] uppercase tracking-wider">Role</div>
+              <div className="text-xs font-semibold text-[#141416]">Product Designer</div>
             </div>
+            <div className="h-6 w-px bg-black/[0.08] hidden sm:block" />
+            <div className="text-right hidden sm:block">
+              <div className="text-[11px] font-mono text-[#86868b] uppercase tracking-wider">Timeline</div>
+              <div className="text-xs font-semibold text-[#141416]">2025 · Case Study</div>
+            </div>
+            <button
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/10 text-xs font-medium text-neutral-600 hover:text-black hover:bg-black/5 transition-all ml-1"
+              title="Copy share link"
+            >
+              {copiedLink ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
+              <span>{copiedLink ? 'Copied' : 'Share'}</span>
+            </button>
+          </div>
+        </div>
 
-            {/* Right: Quick Next Project Button */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleCopyLink}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/10 text-xs font-medium text-neutral-600 hover:text-black hover:bg-black/5 transition-all"
-                title="Copy share link"
-              >
-                {copiedLink ? <Check size={14} className="text-emerald-600" /> : <Copy size={14} />}
-                <span>{copiedLink ? 'Copied' : 'Share'}</span>
-              </button>
-
-              <button
-                onClick={() => onNavigateCaseStudy && onNavigateCaseStudy('fixora')}
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#141416] hover:bg-black text-white text-xs font-medium tracking-tight shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <span>Next: Fixora</span>
-                <ArrowRight size={14} />
-              </button>
+        {/* Row 2: Horizontal Chapter Sub-Navigation (Aligned Edge-to-Edge with 10 Steps) */}
+        <nav className="w-full border-t border-black/[0.06] bg-[#fbfbfd]/90 py-2 relative">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-12 w-full">
+            <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar scrollbar-none w-full">
+              {chapters.map((ch) => {
+                const isActive = activeNav === ch.id;
+                return (
+                  <button
+                    key={ch.id}
+                    onClick={() => scrollToSection(ch.id)}
+                    className={`px-2 py-1 xl:px-2.5 rounded-full text-[11px] xl:text-[11.5px] font-mono transition-all duration-200 whitespace-nowrap shrink-0 lg:shrink-0 focus:outline-none ${
+                      isActive
+                        ? 'bg-black text-white shadow-xs font-semibold'
+                        : 'text-[#66666e] hover:text-[#141416] hover:bg-black/[0.04]'
+                    }`}
+                  >
+                    {ch.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Sticky horizontal chapter anchor track */}
-          <nav className="flex items-center gap-1 sm:gap-2 overflow-x-auto py-2 scrollbar-none border-t border-black/[0.04]">
-            {chapters.map((ch) => {
-              const isActive = activeNav === ch.id;
-              return (
-                <button
-                  key={ch.id}
-                  onClick={() => scrollToSection(ch.id)}
-                  className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium whitespace-nowrap transition-all ${
-                    isActive
-                      ? 'bg-[#1180FF] text-white shadow-xs font-semibold'
-                      : 'text-neutral-500 hover:text-neutral-900 hover:bg-black/5'
-                  }`}
-                >
-                  {ch.label}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
+          {/* Reading Scroll Progress Bar */}
+          <div 
+            className="absolute bottom-0 left-0 h-[2px] bg-[#1180FF] transition-all duration-150 pointer-events-none"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </nav>
       </header>
 
       {/* Main Container */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-24 sm:space-y-32">
+      <main className="max-w-[1280px] mx-auto px-6 md:px-12 pt-16 md:pt-24 flex flex-col gap-32 md:gap-40">
 
         {/* ========================================================================= */}
         {/* CHAPTER 01: HERO / PROJECT OVERVIEW & ECOSYSTEM                           */}

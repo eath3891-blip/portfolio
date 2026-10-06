@@ -23,21 +23,21 @@ export const PROJECTS_CONFIG = {
 
   featuredProjects: [
     {
-      id: "sentinel-ai",
+      id: "registerkaro",
       number: "01",
-      title: "Sentinel AI",
-      badge: "AI Governance",
-      category: "In-house Project · TransOrg Analytics",
+      title: "RegisterKaro",
+      badge: "GovTech / FinTech",
+      category: "Product Design · Customer Portal",
       context:
-        "A control center for AI agents: helping enterprises understand what agents can access, what they are doing, and when humans need to step in.",
+        "Redesigning business compliance and entity registration from an opaque 7-step ordeal into a guided 5-milestone journey with automated KYC and real-time MCA registry sync.",
       role: "Product Designer",
-      focus: "Product Strategy, AI Systems, Enterprise UX",
-      year: "2025",
-      tags: ["AI Governance", "Agent Observability", "Enterprise UX"],
-      accentColor: "#2563eb",
-      visualType: "sentinel",
+      focus: "Onboarding Architecture · FinTech · Design Systems",
+      year: "2024 to 2025",
+      tags: ["Product Design", "Onboarding UX", "GovTech", "FinTech", "Design Systems"],
+      accentColor: "#059669",
+      visualType: "stepper",
       ctaText: "Explore case study",
-      url: "/projects/sentinel-ai"
+      url: "/projects/registerkaro"
     },
     {
       id: "codash",
@@ -72,6 +72,23 @@ export const PROJECTS_CONFIG = {
       visualType: "audit",
       ctaText: "Explore case study",
       url: "/projects/fixora"
+    },
+    {
+      id: "sentinel-ai",
+      number: "04",
+      title: "Sentinel AI",
+      badge: "AI Governance",
+      category: "In-house Project · TransOrg Analytics",
+      context:
+        "A control center for AI agents: helping enterprises understand what agents can access, what they are doing, and when humans need to step in.",
+      role: "Product Designer",
+      focus: "Product Strategy, AI Systems, Enterprise UX",
+      year: "2025",
+      tags: ["AI Governance", "Agent Observability", "Enterprise UX"],
+      accentColor: "#2563eb",
+      visualType: "sentinel",
+      ctaText: "Explore case study",
+      url: "/projects/sentinel-ai"
     }
   ],
 
