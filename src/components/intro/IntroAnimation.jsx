@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Laptop } from 'lucide-react';
 
 /**
  * Opening Experience:
@@ -160,6 +161,24 @@ export default function IntroAnimation({ onComplete, forceReplay = false }) {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Device Experience Recommendation Pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/[0.04] border border-black/[0.08] backdrop-blur-md text-[#515154] text-[11px] sm:text-xs font-medium tracking-tight mt-7 sm:mt-8 shadow-xs"
+          >
+            <Laptop className="w-3.5 h-3.5 text-[#1d1d1f] shrink-0" />
+            <span>For the best experience, please use desktop or laptop</span>
+          </motion.div>
+        </div>
+
+        {/* Subtle Bottom Tap-to-Skip Helper */}
+        <div className="absolute bottom-6 sm:bottom-8 inset-x-0 flex justify-center text-center pointer-events-none">
+          <span className="text-[10px] sm:text-[11px] font-mono text-[#86868b] tracking-wider uppercase">
+            Tap anywhere to skip
+          </span>
         </div>
       </motion.div>
     </AnimatePresence>

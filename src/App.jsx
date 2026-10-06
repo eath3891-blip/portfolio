@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import IntroAnimation from './components/intro/IntroAnimation';
 import Hero from './components/hero/Hero';
 import BottomNavigation from './components/navigation/BottomNavigation';
+import DeviceNoticeBanner from './components/navigation/DeviceNoticeBanner';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
 import PlayPage from './pages/PlayPage';
@@ -143,6 +144,9 @@ export default function App() {
           />
         </motion.div>
       )}
+
+      {/* Floating Device Recommendation Notice for Mobile/Tablet Screens */}
+      {!showIntro && <DeviceNoticeBanner />}
     </main>
   );
 }

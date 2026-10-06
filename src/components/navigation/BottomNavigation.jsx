@@ -37,9 +37,9 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
   return (
     <nav
       aria-label="Primary Navigation"
-      className="fixed bottom-5 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-auto"
+      className="fixed bottom-3 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-auto max-w-[calc(100vw-16px)] sm:max-w-none"
     >
-      <div className="dock-glass flex items-center gap-1 p-1.5 rounded-full shadow-lg">
+      <div className="dock-glass flex items-center gap-0.5 sm:gap-1 p-1 sm:p-1.5 rounded-full shadow-lg border border-black/[0.08]">
         {items.map((item) => {
           const isActive = activeSection === item.id;
           const isHovered = hoveredTab === item.id;
@@ -50,7 +50,7 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
               onClick={() => handleTabClick(item.id)}
               onMouseEnter={() => setHoveredTab(item.id)}
               onMouseLeave={() => setHoveredTab(null)}
-              className="relative group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-xs font-medium tracking-tight transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 select-none whitespace-nowrap"
+              className="relative group flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-medium tracking-tight transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 select-none whitespace-nowrap cursor-pointer shrink-0"
               style={{
                 color: isActive ? '#1d1d1f' : '#86868b'
               }}
@@ -77,10 +77,11 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
               )}
 
               {/* Icon and Label */}
-              <span className="relative z-10 flex items-center gap-1.5">
+              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
                 {getIcon(item.id)}
                 <span className="group-hover:text-[#1d1d1f] transition-colors">
-                  {item.label}
+                  <span className="sm:hidden">{item.shortLabel || item.label}</span>
+                  <span className="hidden sm:inline">{item.label}</span>
                 </span>
               </span>
 

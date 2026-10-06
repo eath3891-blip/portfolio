@@ -51,18 +51,18 @@ export default function ResumeButton({ className = '' }) {
       onClick={handleDownload}
       aria-label={resume.buttonAriaLabel}
       title="Download Manoj Bhatt's Resume (PDF)"
-      className={`group relative inline-flex items-center justify-between w-[155px] sm:w-[168px] h-[40px] sm:h-[42px] px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-black hover:text-white backdrop-blur-md border border-black/[0.08] hover:border-black shadow-2xs transition-all duration-300 ease-out hover:scale-102 active:scale-95 text-xs sm:text-[13px] font-semibold text-[#1d1d1f] select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 ${className}`}
+      className={`group relative inline-flex items-center justify-between w-auto sm:w-[168px] h-[36px] sm:h-[42px] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/90 hover:bg-black hover:text-white backdrop-blur-md border border-black/[0.08] hover:border-black shadow-2xs transition-all duration-300 ease-out hover:scale-102 active:scale-95 text-[11.5px] sm:text-[13px] font-semibold text-[#1d1d1f] select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 cursor-pointer ${className}`}
     >
-      <div className="flex items-center gap-2">
-        <div className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden bg-black/[0.04] group-hover:bg-white/10 flex items-center justify-center transition-colors flex-shrink-0">
-          <FileText size={13} className="text-[#86868b] group-hover:text-white transition-colors" />
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="w-6 h-6 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden bg-black/[0.04] group-hover:bg-white/10 flex items-center justify-center transition-colors flex-shrink-0">
+          <FileText size={12} className="sm:w-[13px] sm:h-[13px] text-[#86868b] group-hover:text-white transition-colors" />
         </div>
         <span className="tracking-tight">{downloading ? 'Downloading...' : resume.buttonLabel}</span>
       </div>
 
       <ArrowUpRight 
-        size={14} 
-        className="text-[#86868b] group-hover:text-white transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0" 
+        size={13} 
+        className="sm:w-[14px] sm:h-[14px] text-[#86868b] group-hover:text-white transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0 ml-1.5 sm:ml-0" 
       />
     </a>
   );

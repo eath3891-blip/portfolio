@@ -52,7 +52,7 @@ export default function MoreOfMyWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-[2.6rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#0057ff]/40 hover:shadow-[0_32px_70px_-15px_rgba(0,87,255,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
+          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#0057ff]/40 hover:shadow-[0_32px_70px_-15px_rgba(0,87,255,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
         >
           <div className="flex flex-col gap-5">
             {/* Top Bar: 3D App Icon Well + Frosted Category Pill */}
@@ -83,16 +83,16 @@ export default function MoreOfMyWork() {
           </div>
 
           {/* Bottom Action Bar */}
-          <div className="mt-6 pt-4 border-t border-black/[0.04] flex items-center justify-between gap-3">
-            <span className="px-3 py-1.5 rounded-full bg-white border border-black/[0.06] text-xs font-mono text-[#86868b] shadow-2xs">
+          <div className="mt-6 pt-4 border-t border-black/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span className="self-start px-3 py-1.5 rounded-full bg-white border border-black/[0.06] text-xs font-mono text-[#86868b] shadow-2xs whitespace-nowrap">
               behance.net/manojbhatt30
             </span>
 
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#141416] group-hover:bg-[#0057ff] text-white text-xs sm:text-sm font-semibold shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_6px_16px_rgba(0,0,0,0.2)] group-hover:shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_8px_20px_rgba(0,87,255,0.3)] hover:scale-105 active:scale-95 transition-all duration-200">
-              <span>{moreWorkSection.destinations[0].ctaText}</span>
+            <div className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#141416] group-hover:bg-[#0057ff] text-white text-xs sm:text-sm font-semibold shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_6px_16px_rgba(0,0,0,0.2)] group-hover:shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_8px_20px_rgba(0,87,255,0.3)] hover:scale-102 active:scale-95 transition-all duration-200 whitespace-nowrap shrink-0">
+              <span className="whitespace-nowrap">{moreWorkSection.destinations[0].ctaText}</span>
               <ArrowUpRight
                 size={14}
-                className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function MoreOfMyWork() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-[2.6rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#f24e1e]/40 hover:shadow-[0_32px_70px_-15px_rgba(242,78,30,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
+          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#f24e1e]/40 hover:shadow-[0_32px_70px_-15px_rgba(242,78,30,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
         >
           <div className="flex flex-col gap-5">
             {/* Top Bar: 3D App Icon Well + Frosted Category Pill */}
@@ -145,16 +145,16 @@ export default function MoreOfMyWork() {
           </div>
 
           {/* Bottom Action Bar */}
-          <div className="mt-6 pt-4 border-t border-black/[0.04] flex items-center justify-between gap-3">
-            <span className="px-3 py-1.5 rounded-full bg-white border border-black/[0.06] text-xs font-mono text-[#86868b] shadow-2xs">
+          <div className="mt-6 pt-4 border-t border-black/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span className="self-start px-3 py-1.5 rounded-full bg-white border border-black/[0.06] text-xs font-mono text-[#86868b] shadow-2xs whitespace-nowrap">
               figma.com/@manojbhatt
             </span>
 
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#141416] group-hover:bg-[#f24e1e] text-white text-xs sm:text-sm font-semibold shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_6px_16px_rgba(0,0,0,0.2)] group-hover:shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_8px_20px_rgba(242,78,30,0.3)] hover:scale-105 active:scale-95 transition-all duration-200">
-              <span>{moreWorkSection.destinations[1].ctaText}</span>
+            <div className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#141416] group-hover:bg-[#f24e1e] text-white text-xs sm:text-sm font-semibold shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_6px_16px_rgba(0,0,0,0.2)] group-hover:shadow-[inset_0_1.5px_1px_rgba(255,255,255,0.4),0_8px_20px_rgba(242,78,30,0.3)] hover:scale-102 active:scale-95 transition-all duration-200 whitespace-nowrap shrink-0">
+              <span className="whitespace-nowrap">{moreWorkSection.destinations[1].ctaText}</span>
               <ArrowUpRight
                 size={14}
-                className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </div>
           </div>

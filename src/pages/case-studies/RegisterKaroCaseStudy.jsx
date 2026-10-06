@@ -44,7 +44,8 @@ import {
   Cpu,
   ZoomIn,
   X,
-  Maximize2
+  Maximize2,
+  Copy
 } from 'lucide-react';
 
 /**
@@ -68,8 +69,8 @@ function ImagePlaceholder({
   const [activeAnnotation, setActiveAnnotation] = useState(null);
 
   return (
-    <div className="w-full flex flex-col gap-3 my-6">
-      <div className={`relative w-full ${imageSrc && !aspect ? '' : aspect} rounded-2xl bg-neutral-900 border border-neutral-800 overflow-hidden group shadow-lg flex flex-col justify-between ${imageSrc ? 'p-0' : 'p-6 sm:p-8 select-none'}`}>
+    <div className="w-full flex flex-col gap-2.5 sm:gap-3 my-4 sm:my-6">
+      <div className={`relative w-full ${imageSrc && !aspect ? '' : aspect} rounded-xl sm:rounded-2xl bg-neutral-900 border border-neutral-800 overflow-hidden group shadow-lg flex flex-col justify-between ${imageSrc ? 'p-0' : 'p-4 sm:p-6 md:p-8 select-none'}`}>
         
         {/* Subtle geometric blueprint grid for placeholder */}
         {!imageSrc && (
@@ -83,38 +84,38 @@ function ImagePlaceholder({
         )}
         
         {/* Corner framing indicators */}
-        <div className="absolute top-3 left-3 w-3 h-3 border-t border-l border-emerald-500/50 z-20 pointer-events-none" />
-        <div className="absolute top-3 right-3 w-3 h-3 border-t border-r border-emerald-500/50 z-20 pointer-events-none" />
-        <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-emerald-500/50 z-20 pointer-events-none" />
-        <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-emerald-500/50 z-20 pointer-events-none" />
+        <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 w-2.5 sm:w-3 h-2.5 sm:h-3 border-t border-l border-emerald-500/50 z-20 pointer-events-none" />
+        <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-2.5 sm:w-3 h-2.5 sm:h-3 border-t border-r border-emerald-500/50 z-20 pointer-events-none" />
+        <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 w-2.5 sm:w-3 h-2.5 sm:h-3 border-b border-l border-emerald-500/50 z-20 pointer-events-none" />
+        <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 w-2.5 sm:w-3 h-2.5 sm:h-3 border-b border-r border-emerald-500/50 z-20 pointer-events-none" />
 
         {/* Top Header of Frame */}
-        <div className={`relative z-20 flex items-center justify-between w-full ${imageSrc ? 'px-4 py-3 bg-neutral-950/90 backdrop-blur-sm border-b border-neutral-800/80' : ''}`}>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-1 rounded-full">
+        <div className={`relative z-20 flex items-center justify-between w-full gap-2 ${imageSrc ? 'px-3 sm:px-4 py-2 sm:py-3 bg-neutral-950/90 backdrop-blur-sm border-b border-neutral-800/80' : ''}`}>
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+            <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shrink-0 truncate max-w-[170px] xs:max-w-none">
               {badge}
             </span>
             {imageSrc && (
-              <span className="text-xs font-medium text-neutral-300 hidden sm:inline ml-1 font-mono truncate max-w-sm">
+              <span className="text-xs font-medium text-neutral-300 hidden md:inline ml-1 font-mono truncate max-w-sm">
                 {title}
               </span>
             )}
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             {imageSrc ? (
               <button
                 type="button"
                 onClick={() => onImageClick && onImageClick({ src: imageSrc, title, caption, badge })}
-                className="inline-flex items-center gap-1.5 text-[11px] font-mono text-neutral-300 hover:text-white bg-neutral-800/90 hover:bg-neutral-700/90 border border-neutral-700 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-mono text-neutral-300 hover:text-white bg-neutral-800/90 hover:bg-neutral-700/90 border border-neutral-700 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg transition-colors cursor-pointer touch-manipulation"
                 title="Expand screenshot"
               >
-                <Maximize2 size={12} className="text-emerald-400" />
-                <span className="hidden sm:inline">Expand</span>
+                <Maximize2 size={12} className="text-emerald-400 shrink-0" />
+                <span className="hidden xs:inline sm:inline">Expand</span>
               </button>
             ) : (
-              <span className="text-[10px] font-mono text-neutral-500 tracking-tight">
+              <span className="text-[9px] sm:text-[10px] font-mono text-neutral-500 tracking-tight">
                 IMAGE PLACEHOLDER
               </span>
             )}
@@ -130,25 +131,25 @@ function ImagePlaceholder({
             <img 
               src={imageSrc} 
               alt={title} 
-              className={`w-full ${imgAspect || 'max-h-[520px]'} ${objectFit} rounded-lg transition-transform duration-300 group-hover/img:scale-[1.008]`}
+              className={`w-full ${imgAspect || 'max-h-[340px] sm:max-h-[460px] md:max-h-[540px]'} ${objectFit} rounded-lg transition-transform duration-300 group-hover/img:scale-[1.008]`}
               loading="lazy"
             />
             <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors flex items-center justify-center pointer-events-none">
-              <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-neutral-900/95 text-white border border-neutral-700 px-3 py-1.5 rounded-full text-xs font-mono flex items-center gap-1.5 shadow-xl">
+              <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-neutral-900/95 text-white border border-neutral-700 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono flex items-center gap-1.5 shadow-xl">
                 <ZoomIn size={13} className="text-emerald-400" />
                 Click to view full size
               </span>
             </div>
           </div>
         ) : (
-          <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto py-4">
-            <div className="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-neutral-700/80 flex items-center justify-center text-emerald-400 mb-3 shadow-inner">
-              <Laptop size={22} />
+          <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto py-4 px-2">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-neutral-800/80 border border-neutral-700/80 flex items-center justify-center text-emerald-400 mb-2.5 sm:mb-3 shadow-inner">
+              <Laptop size={20} className="sm:w-[22px] sm:h-[22px]" />
             </div>
-            <h4 className="text-base sm:text-lg font-semibold text-neutral-100 tracking-tight mb-1">
+            <h4 className="text-sm sm:text-base md:text-lg font-semibold text-neutral-100 tracking-tight mb-1">
               [{title}]
             </h4>
-            <p className="text-xs sm:text-sm text-neutral-400 max-w-md leading-relaxed">
+            <p className="text-[11px] sm:text-xs md:text-sm text-neutral-400 max-w-md leading-relaxed">
               {description}
             </p>
           </div>
@@ -156,8 +157,8 @@ function ImagePlaceholder({
 
         {/* Annotations overlay (if supplied) */}
         {annotations.length > 0 && (
-          <div className={`relative z-10 ${imageSrc ? 'px-4 py-3 bg-neutral-950/90 border-t border-neutral-800/80' : 'pt-4 border-t border-neutral-800/80'} flex flex-wrap gap-2 items-center`}>
-            <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider mr-1">
+          <div className={`relative z-10 ${imageSrc ? 'px-3 sm:px-4 py-2 sm:py-3 bg-neutral-950/90 border-t border-neutral-800/80' : 'pt-3 sm:pt-4 border-t border-neutral-800/80'} flex flex-wrap gap-1.5 sm:gap-2 items-center`}>
+            <span className="text-[9px] sm:text-[10px] font-mono text-neutral-400 uppercase tracking-wider mr-1 shrink-0">
               Key Decisions:
             </span>
             {annotations.map((ann, idx) => (
@@ -168,13 +169,13 @@ function ImagePlaceholder({
                   e.stopPropagation();
                   setActiveAnnotation(activeAnnotation === idx ? null : idx);
                 }}
-                className={`text-[11px] font-mono px-2.5 py-1 rounded-full border transition-all text-left flex items-center gap-1.5 ${
+                className={`text-[10px] sm:text-[11px] font-mono px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border transition-all text-left flex items-start sm:items-center gap-1.5 leading-tight ${
                   activeAnnotation === idx 
                     ? 'bg-emerald-500 text-black border-emerald-400 font-medium' 
                     : 'bg-neutral-800/90 text-neutral-300 border-neutral-700 hover:border-neutral-600'
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1 sm:mt-0" />
                 <span>{ann}</span>
               </button>
             ))}
@@ -184,8 +185,8 @@ function ImagePlaceholder({
 
       {/* Caption beneath placeholder */}
       {caption && (
-        <p className="text-xs text-neutral-500 font-mono tracking-tight px-1 flex items-center gap-1.5">
-          <span className="text-emerald-600 font-semibold">FIG:</span>
+        <p className="text-[11px] sm:text-xs text-neutral-500 font-mono tracking-tight px-1 flex items-start gap-1.5 leading-snug">
+          <span className="text-emerald-600 font-semibold shrink-0">FIG:</span>
           <span>{caption}</span>
         </p>
       )}
@@ -202,6 +203,13 @@ function ImagePlaceholder({
 export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCaseStudy }) {
   const [activeNav, setActiveNav] = useState('context');
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
 
   // Interactive state for Journey Map
   const [selectedJourneyStage, setSelectedJourneyStage] = useState(4); // Default: Upload Documents
@@ -209,8 +217,9 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
   // Interactive state for Edge Cases
   const [selectedEdgeCase, setSelectedEdgeCase] = useState(0);
 
-  // Interactive state for WhatsApp Future Flow
-  const [activeWaStep, setActiveWaStep] = useState(0);
+  // Interactive state for Friction Vectors
+  const [selectedFrictionVector, setSelectedFrictionVector] = useState(0);
+
   const [modalImage, setModalImage] = useState(null);
 
   // 10 Chapter anchors for the sticky sub-navigation
@@ -218,12 +227,12 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
     { id: 'context', label: '01 Context' },
     { id: 'discovery', label: '02 Discovery' },
     { id: 'problem', label: '03 Problem' },
-    { id: 'product-direction', label: '04 Product Direction' },
-    { id: 'web-mobile', label: '05 Pre vs Post Onboarding' },
-    { id: 'system-thinking', label: '06 System Thinking' },
-    { id: 'technical-collaboration', label: '07 Technical Collaboration' },
-    { id: 'future-opportunity', label: '08 Future Opportunity' },
-    { id: 'business-impact', label: '09 Business Impact' },
+    { id: 'product-direction', label: '04 Direction' },
+    { id: 'web-mobile', label: '05 Onboarding' },
+    { id: 'system-thinking', label: '06 Systems' },
+    { id: 'technical-collaboration', label: '07 Collaboration' },
+    { id: 'future-opportunity', label: '08 Future Scope' },
+    { id: 'business-impact', label: '09 Impact' },
     { id: 'reflection', label: '10 Reflection' }
   ];
 
@@ -238,9 +247,9 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
 
       const scrollPosition = window.scrollY + 160;
       for (let i = chapters.length - 1; i >= 0; i--) {
-        const el = document.getElementById(chapters[i].id);
-        if (el) {
-          const top = el.offsetTop;
+        const element = document.getElementById(chapters[i].id);
+        if (element) {
+          const top = element.offsetTop;
           if (scrollPosition >= top) {
             setActiveNav(chapters[i].id);
             break;
@@ -266,6 +275,46 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
       });
     }
   };
+
+  // 4 Friction Vectors Mapped from Discovery Research
+  const frictionVectors = [
+    {
+      id: 'docs',
+      tag: 'INPUT FRICTION',
+      title: 'Unclear Document Prerequisites',
+      hesitation: 'Customers were asked to upload documents without knowing format, file size, or acceptable proofs (e.g. voter ID vs utility bill).',
+      bottleneck: 'Internal legal team spent 40% of their time chasing rejected or blurry document re-uploads through manual calls and emails.',
+      solution: 'Visual preview checklist with specimen examples, multi-format validation, and instant legible quality feedback.',
+      metric: '42% faster initial document verification'
+    },
+    {
+      id: 'pricing',
+      tag: 'FINANCIAL ANXIETY',
+      title: 'Statutory Fee Sticker Shock',
+      hesitation: 'Users feared hidden costs after seeing flat marketing slogans clashed with government stamp duties and variable RoC fees.',
+      bottleneck: 'High checkout cart abandonment when unannounced statutory taxes and DSC token fees appeared on the final payment screen.',
+      solution: 'Transparent real-time calculator separating government fees from professional retainers upfront before payment.',
+      metric: '28% reduction in checkout drop-off'
+    },
+    {
+      id: 'blackhole',
+      tag: 'PROCESS UNCERTAINTY',
+      title: 'The Asynchronous "Black Hole"',
+      hesitation: 'After payment and submission, founders waited in complete silence for 4 to 7 business days with zero status feedback.',
+      bottleneck: 'Customer support queues flooded with repetitive "What is my status?" inquiries, distracting CAs from actual filings.',
+      solution: 'Live 5-stage milestone tracker with transparent SLA expectations and multi-channel notification webhooks.',
+      metric: '65% drop in routine status support calls'
+    },
+    {
+      id: 'query',
+      tag: 'REGULATORY RISK',
+      title: 'MCA Resubmission Time Clock',
+      hesitation: 'Government resubmission queries (e.g. name similarity or NOC defects) sounded like legal rejections, causing founder panic.',
+      bottleneck: 'Strict 15-day statutory clock: missed deadlines forfeited government challan fees and forced restart from scratch.',
+      solution: 'Actionable emergency alert banner with plain-language explanation of the MCA query and one-click replacement upload.',
+      metric: 'Zero client filings forfeited to MCA timeout'
+    }
+  ];
 
   // 9-Stage User Journey Data
   const journeyStages = [
@@ -403,65 +452,89 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
   ];
 
   return (
-    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] font-sans selection:bg-emerald-500 selection:text-white pb-36">
+    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] font-sans selection:bg-emerald-500 selection:text-white pb-36 overflow-x-hidden">
       
-      {/* Reading Progress Bar */}
-      <div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-400 z-50 transition-all duration-150"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
-      {/* Top Breadcrumb Navigation */}
-      <header className="w-full border-b border-black/[0.06] bg-[#fbfbfd]/90 backdrop-blur-xl sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      {/* ========================================================================= */}
+      {/* 00: STICKY SUB-NAVIGATION & READING PROGRESS                             */}
+      {/* ========================================================================= */}
+      <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#fbfbfd]/90 border-b border-black/[0.06] transition-all">
+        {/* Row 1: Global Navigation & Case Study Identity */}
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between w-full">
+          {/* Left: Back to Projects button */}
           <button
-            type="button"
             onClick={onBackToProjects}
-            className="flex items-center gap-2 text-xs font-mono font-medium text-neutral-600 hover:text-black transition-colors group cursor-pointer"
+            className="group inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#55555c] hover:text-[#141416] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded-full px-3 py-1.5 bg-black/[0.03] hover:bg-black/[0.06] cursor-pointer"
+            aria-label="Back to all projects"
           >
-            <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft size={14} className="transition-transform duration-200 group-hover:-translate-x-1 text-[#86868b] group-hover:text-[#141416]" />
             <span>Back to Projects</span>
           </button>
 
-          <div className="flex items-center gap-3">
-            <span className="hidden sm:inline text-xs font-mono text-neutral-600">
-              RegisterKaro Case Study
+          {/* Middle: Project title metadata */}
+          <div className="hidden md:flex items-center gap-2.5 text-xs font-mono text-[#86868b]">
+            <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 font-semibold border border-emerald-500/20">
+              PRODUCT DESIGN / CASE STUDY
             </span>
-            <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-              LEGALTECH
-            </span>
+            <span className="font-semibold text-[#141416]">RegisterKaro</span>
+            <span className="text-black/30">/</span>
+            <span>Customer Onboarding Ecosystem</span>
+          </div>
+
+          {/* Right: Role, Timeline & Share Action */}
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <div className="text-[11px] font-mono text-[#86868b] uppercase tracking-wider">Role</div>
+              <div className="text-xs font-semibold text-[#141416]">Product Designer</div>
+            </div>
+            <div className="h-6 w-px bg-black/[0.08] hidden sm:block" />
+            <div className="text-right hidden sm:block">
+              <div className="text-[11px] font-mono text-[#86868b] uppercase tracking-wider">Timeline</div>
+              <div className="text-xs font-semibold text-[#141416]">2025 · Case Study</div>
+            </div>
+            <button
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/10 text-xs font-medium text-neutral-600 hover:text-black hover:bg-black/5 transition-all ml-1 cursor-pointer"
+              title="Copy share link"
+            >
+              {copiedLink ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
+              <span>{copiedLink ? 'Copied' : 'Share'}</span>
+            </button>
           </div>
         </div>
 
-        {/* Sticky Sub-Navigation */}
-        <nav 
-          aria-label="Case Study Chapters" 
-          className="w-full border-t border-black/[0.04] bg-white/70 backdrop-blur-md overflow-x-auto scrollbar-none"
-        >
-          <div className="max-w-6xl mx-auto px-6 flex items-center gap-1 sm:gap-2 h-11 text-xs font-mono whitespace-nowrap">
-            {chapters.map((ch) => {
-              const isActive = activeNav === ch.id;
-              return (
-                <button
-                  key={ch.id}
-                  type="button"
-                  onClick={() => scrollToSection(ch.id)}
-                  className={`px-3 py-1 rounded-full transition-all text-xs cursor-pointer ${
-                    isActive 
-                      ? 'bg-neutral-900 text-white font-medium shadow-xs' 
-                      : 'text-neutral-500 hover:text-black hover:bg-black/[0.04]'
-                  }`}
-                >
-                  {ch.label}
-                </button>
-              );
-            })}
+        {/* Row 2: Horizontal Chapter Sub-Navigation (Aligned Edge-to-Edge with 10 Steps) */}
+        <nav className="w-full border-t border-black/[0.06] bg-[#fbfbfd]/90 py-2 relative">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-12 w-full">
+            <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar scrollbar-none w-full">
+              {chapters.map((ch) => {
+                const isActive = activeNav === ch.id;
+                return (
+                  <button
+                    key={ch.id}
+                    onClick={() => scrollToSection(ch.id)}
+                    className={`px-2 py-1 xl:px-2.5 rounded-full text-[11px] xl:text-[11.5px] font-mono transition-all duration-200 whitespace-nowrap shrink-0 lg:shrink-0 focus:outline-none cursor-pointer ${
+                      isActive
+                        ? 'bg-black text-white shadow-xs font-semibold'
+                        : 'text-[#66666e] hover:text-[#141416] hover:bg-black/[0.04]'
+                    }`}
+                  >
+                    {ch.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Reading Scroll Progress Bar */}
+          <div 
+            className="absolute bottom-0 left-0 h-[2px] bg-emerald-600 transition-all duration-150 pointer-events-none"
+            style={{ width: `${scrollProgress}%` }}
+          />
         </nav>
       </header>
 
       {/* Main Editorial Case Study Container */}
-      <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-12 sm:pt-16 md:pt-20 flex flex-col gap-24 sm:gap-32">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 pt-8 sm:pt-14 md:pt-20 flex flex-col gap-14 sm:gap-20 md:gap-28">
 
         {/* ========================================================================= */}
         {/* CHAPTER 01: CONTEXT (Hero + Opening Hook + Where It Started)              */}
@@ -476,14 +549,14 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight text-[#111827] leading-[1.08]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-[#111827] leading-[1.1]">
               RegisterKaro
-              <span className="block text-neutral-700 mt-2 font-normal">
+              <span className="block text-neutral-700 mt-1 sm:mt-2 font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 Customer Onboarding Transformation
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-serif italic text-neutral-800 leading-relaxed max-w-3xl border-l-2 border-emerald-500 pl-5 my-2">
+            <p className="text-lg sm:text-xl md:text-2xl font-serif italic text-neutral-800 leading-relaxed max-w-3xl border-l-2 border-emerald-500 pl-4 sm:pl-5 my-2">
               "From fragmented WhatsApp conversations to a structured digital onboarding ecosystem."
             </p>
 
@@ -492,7 +565,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </p>
 
             {/* Metadata Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 pt-8 border-t border-black/[0.08] text-xs font-mono">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-black/[0.08] text-xs font-mono">
               <div>
                 <span className="text-neutral-400 block mb-1 uppercase tracking-wider text-[10px]">ROLE</span>
                 <span className="font-semibold text-neutral-900">Product Designer</span>
@@ -500,7 +573,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               <div className="md:col-span-1">
                 <span className="text-neutral-400 block mb-1 uppercase tracking-wider text-[10px]">FOCUS</span>
                 <span className="font-semibold text-neutral-900 leading-tight block">
-                  UX / Product Design / Design Systems / Product Strategy
+                  UX / Product Design / Systems Thinking / Product Strategy
                 </span>
               </div>
               <div>
@@ -520,7 +593,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </div>
 
             {/* Hero Visual: Timeline / Evolution Graphic */}
-            <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-neutral-950 text-white border border-neutral-800 shadow-xl overflow-hidden relative">
+            <div className="mt-6 sm:mt-8 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950 text-white border border-neutral-800 shadow-xl overflow-hidden relative">
               <div className="relative z-10 flex flex-col gap-6">
                 <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
                   <span className="text-xs font-mono font-semibold text-emerald-400 tracking-wider uppercase">
@@ -532,7 +605,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                 </div>
 
                 {/* 5 Milestone Timeline */}
-                <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 relative">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 relative">
                   {[
                     { title: 'WHATSAPP GROUPS', stage: 'Where It Started', note: 'High friction manual chats', tag: 'Legacy' },
                     { title: 'WEB EXPERIENCE', stage: 'First Milestone', note: 'Structured complex forms', tag: 'Shipped' },
@@ -706,7 +779,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
           </div>
 
           {/* Horizontal Discovery Process */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
             {[
               { step: '01', title: 'OBSERVE', desc: 'Listen to customer calls and review chat logs' },
               { step: '02', title: 'MAP', desc: 'Diagram the end-to-end human and legal steps' },
@@ -723,7 +796,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
           </div>
 
           {/* Visual Research Board with 5 Categories */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             {[
               {
                 category: 'CUSTOMER',
@@ -797,16 +870,141 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             })}
           </div>
 
-          <ImagePlaceholder
-            badge="DISCOVERY ARTIFACT"
-            title="WORKFLOW & FRICTION MAPPING BOARD"
-            description="Synthesized map connecting user hesitation points with operational document bottlenecks."
-            caption="Research mapping board synthesizing customer drop-off drivers and internal filing handoffs."
-            annotations={[
-              "Identified lack of upfront document clarity as primary stalling factor",
-              "Mapped human touchpoints across legal review and payment confirmation"
-            ]}
-          />
+          {/* Discovery Artifact & Synthesis Board */}
+          <div className="flex flex-col gap-6 pt-6 border-t border-neutral-200">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold uppercase">
+                SYNTHESIS ARTIFACT
+              </span>
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                02.2 WORKFLOW & FRICTION MAPPING BOARD
+              </span>
+            </div>
+
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-neutral-900 leading-tight">
+                Connecting User Hesitation to Operational Bottlenecks
+              </h3>
+              <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl mt-2">
+                Before drafting wireframes, I led on-site whiteboard sessions with legal ops and charted an end-to-end friction board. Every design decision in the customer portal directly originated from a documented breakdown between customer expectation and government filing workflows.
+              </p>
+            </div>
+
+            {/* 2-Column Responsive Grid: Authentic Whiteboard Exploration + Interactive Friction Matrix */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch my-2">
+              {/* Left Column: Whiteboard Mapping Photo Artifact (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col justify-between">
+                <ImagePlaceholder
+                  imageSrc="/images/projects/registerkaro/rk-discovery-whiteboard-session.png"
+                  title="WHITEBOARD ARCHITECTURE & JOURNEY MAPPING SESSION"
+                  badge="DISCOVERY ARTIFACT [OFFICE WORKSHOP]"
+                  caption="Whiteboard session at RegisterKaro: mapping customer friction points, human legal handoffs, and digital intake touchpoints."
+                  objectFit="object-cover"
+                  aspect=""
+                  imgAspect="h-[460px] sm:h-[500px] w-full"
+                  onImageClick={setModalImage}
+                  annotations={[
+                    "Identified lack of upfront document clarity as primary stalling factor",
+                    "Mapped human touchpoints across legal review and payment confirmation",
+                    "Defined boundaries between self-serve digital inputs and high-touch CA intervention"
+                  ]}
+                />
+              </div>
+
+              {/* Right Column: Interactive Friction & Workflow Matrix (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-neutral-900 text-white border border-neutral-800 shadow-xl my-4 sm:my-6">
+                <div>
+                  <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                        RESEARCH SYNTHESIS MATRIX
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-neutral-400">
+                      4 Core Breakdown Vectors
+                    </span>
+                  </div>
+
+                  {/* Horizontal Vector Selectors */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-4">
+                    {frictionVectors.map((vec, idx) => {
+                      const isSelected = selectedFrictionVector === idx;
+                      return (
+                        <button
+                          key={vec.id}
+                          type="button"
+                          onClick={() => setSelectedFrictionVector(idx)}
+                          className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-500/20 border-emerald-400 text-white shadow-xs'
+                              : 'bg-neutral-800/60 border-neutral-700/70 text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800'
+                          }`}
+                        >
+                          <span className="text-[9px] font-mono block uppercase tracking-wider mb-1 text-emerald-400">
+                            0{idx + 1} · {vec.tag}
+                          </span>
+                          <span className="text-xs font-medium line-clamp-1">
+                            {vec.title}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Active Vector Deep-Dive Cards */}
+                  <div className="flex flex-col gap-3.5 mt-5">
+                    {/* User Hesitation */}
+                    <div className="p-4 rounded-xl bg-neutral-800/80 border border-neutral-700/80">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <AlertCircle size={14} className="text-amber-400 shrink-0" />
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-400">
+                          Customer Hesitation Point
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-300 leading-relaxed">
+                        {frictionVectors[selectedFrictionVector].hesitation}
+                      </p>
+                    </div>
+
+                    {/* Operational Bottleneck */}
+                    <div className="p-4 rounded-xl bg-neutral-800/80 border border-neutral-700/80">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Activity size={14} className="text-rose-400 shrink-0" />
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-rose-400">
+                          Internal Operational Bottleneck
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-300 leading-relaxed">
+                        {frictionVectors[selectedFrictionVector].bottleneck}
+                      </p>
+                    </div>
+
+                    {/* Product & UX Solution */}
+                    <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-800/60">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-400">
+                          Product & UX Design Solution
+                        </span>
+                      </div>
+                      <p className="text-xs text-emerald-100 leading-relaxed font-sans">
+                        {frictionVectors[selectedFrictionVector].solution}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Metric Impact */}
+                <div className="mt-5 pt-3 border-t border-neutral-800 flex items-center justify-between text-xs font-mono">
+                  <span className="text-neutral-400">Measured Outcome:</span>
+                  <span className="font-semibold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-md border border-emerald-800/60">
+                    {frictionVectors[selectedFrictionVector].metric}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ========================================================================= */}
@@ -829,7 +1027,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
           </div>
 
           {/* Visual System Hierarchy Stack */}
-          <div className="p-8 rounded-3xl bg-neutral-950 text-white border border-neutral-800 flex flex-col gap-6">
+          <div className="p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950 text-white border border-neutral-800 flex flex-col gap-4 sm:gap-6">
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
               <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">
                 SYSTEM DEPTH STACK
@@ -848,12 +1046,12 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                 { layer: 'OPERATIONS', sub: 'Internal legal vetting and government MCA processing', color: 'bg-neutral-800/80 text-white border-neutral-700' },
                 { layer: 'CORE SYSTEM', sub: 'Single source of truth data architecture', color: 'bg-neutral-900 text-neutral-300 border-neutral-700' }
               ].map((item, idx) => (
-                <div key={idx} className={`p-3.5 rounded-xl border flex items-center justify-between ${item.color}`}>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-neutral-500 font-bold">L{idx + 1}</span>
+                <div key={idx} className={`p-3 sm:p-3.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3 ${item.color}`}>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-xs font-mono text-neutral-500 font-bold shrink-0">L{idx + 1}</span>
                     <span className="text-xs sm:text-sm font-bold font-mono tracking-tight">{item.layer}</span>
                   </div>
-                  <span className="text-[11px] text-neutral-400 hidden sm:inline">{item.sub}</span>
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 pl-5 sm:pl-0">{item.sub}</span>
                 </div>
               ))}
             </div>
@@ -869,7 +1067,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               The design challenges weren't only visual.
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {[
                 {
                   num: '01',
@@ -1020,12 +1218,12 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
           </div>
 
           {/* Visual Conclusion: Channel Jobs */}
-          <div className="p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800 text-center flex flex-col gap-6 items-center">
+          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-neutral-900 text-white border border-neutral-800 text-center flex flex-col gap-4 sm:gap-6 items-center">
             <h3 className="text-xl sm:text-2xl font-display font-medium text-neutral-100 max-w-2xl">
               "The decision wasn't Web vs Mobile vs WhatsApp. It was about giving each channel the job it does best."
             </h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-3xl">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-3xl">
               {[
                 { channel: 'WhatsApp', job: 'CONVERSATION', desc: 'Direct outreach & quick questions' },
                 { channel: 'Web', job: 'COMPLEX TASKS', desc: 'Deep filing, uploads & data reviews' },
@@ -1186,7 +1384,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </p>
 
             {/* Pre-Onboarding 5-Step Milestone Stepper */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
               {[
                 { num: '01', title: 'Basic Lead Intake', desc: 'Name, phone, email & legal entity preference' },
                 { num: '02', title: 'Location & Capital', desc: 'State jurisdiction & capital slider calculation' },
@@ -1206,17 +1404,17 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             <div className="pt-4">
               <ImagePlaceholder
                 imageSrc="/images/projects/registerkaro/rk-pre-onboarding-landing.png"
-                title="PRE-ONBOARDING ENTRY & SERVICE INTAKE PORTAL"
-                badge="PRE-ONBOARDING [INTENT & PRICING]"
-                caption="Public pre-onboarding acquisition portal presenting the 4-step progressive roadmap, basic lead intake, and transparent pricing."
+                title="PRE-ONBOARDING HERO & CONSULTATION INTAKE"
+                badge="PRE-ONBOARDING [HERO & INTAKE]"
+                caption="Desktop acquisition hero and service intake portal featuring transparent 7-day registration promise, trust ratings (Google & Trustpilot 4.7/5), and friction-free lead capture."
                 objectFit="object-contain"
                 aspect=""
-                imgAspect="max-h-[560px]"
+                imgAspect="max-h-[580px]"
                 onImageClick={setModalImage}
                 annotations={[
-                  "Step 1 to 4 roadmap gives clear visual expectation before requiring legal papers",
-                  "Top-of-funnel basic form captures name, mobile, and email to initiate lead recovery",
-                  "Transparent fee breakdown eliminates hidden statutory charge surprises"
+                  "High-Trust Value Proposition: Promotes transparent 7-day registration timeline and verified social proof (Google & Trustpilot 4.7/5)",
+                  "Friction-Free Service Intake: Collects essential contact parameters (Name, Mobile, Email, Service) before requesting legal documentation",
+                  "Credibility Metric Strip: Reassures first-time founders with network scale (500+ professionals, 50,000+ pan-India clients)"
                 ]}
               />
             </div>
@@ -1370,7 +1568,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </p>
 
             {/* Post-Onboarding In-Depth Milestone Stepper (1a to 5a) */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
               {[
                 { num: '1a', title: 'RUN Name Approval', desc: 'MCA SPICe+ Part A company name reservation' },
                 { num: '2a', title: 'Director KYC & DIN', desc: 'PAN, passport/voter ID, and DIN allotment' },
@@ -1682,29 +1880,104 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               </div>
             </div>
 
-            {/* Mobile Image Placeholders */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {[
-                { title: 'MOBILE HOME SCREEN', desc: 'At-a-glance legal entity health & filings' },
-                { title: 'MOBILE SERVICE SCREEN', desc: 'Contextual one-tap service requests' },
-                { title: 'MOBILE DOCUMENT SCREEN', desc: 'Camera document scanning & vault' },
-                { title: 'MOBILE STATUS SCREEN', desc: 'Live MCA timeline & push alerts' }
-              ].map((m, i) => (
+            {/* Native Mobile App Screens Showcase */}
+            <div className="pt-6">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-semibold uppercase">
+                  NATIVE MOBILE INTERFACES
+                </span>
+                <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                  ACTIVE SERVICES & COMPLIANCE VAULT
+                </span>
+              </div>
+              <h4 className="text-lg sm:text-xl font-display font-medium text-neutral-900 mb-2">
+                On-The-Go Compliance Oversight: Active Services & Document Vault
+              </h4>
+              <p className="text-sm text-neutral-600 leading-relaxed max-w-3xl mb-6">
+                While desktop handles heavy charter reviews and complex data entry, founders rely on the mobile app for time-critical compliance tasks: tracking director KYC status, monitoring DSC token validities, and downloading government certificates on demand.
+              </p>
+
+              {/* 2-Column Responsive Grid for the Two Real Mobile App Screens */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+                {/* Screen 1: Active Services & KYC Tracking */}
                 <ImagePlaceholder
-                  key={i}
-                  aspect="aspect-[9/16]"
-                  badge="MOBILE APP"
-                  title={m.title}
-                  description={m.desc}
-                  caption={`Mobile application interface: ${m.title.toLowerCase()}`}
+                  imageSrc="/images/projects/registerkaro/rk-mobile-app-active-services.png"
+                  title="MOBILE ACTIVE SERVICES & DIRECTOR KYC STATUS"
+                  badge="MOBILE APP [SERVICES & KYC]"
+                  caption="Active Services overview featuring multi-entity switching (ABC Technologies Pvt Ltd), high-priority Director KYC alerts for DSC tokens, and completed MSME status."
+                  objectFit="object-contain"
+                  aspect=""
+                  imgAspect="max-h-[580px]"
+                  onImageClick={setModalImage}
+                  annotations={[
+                    "Actionable Director KYC Banner: Highlights John Doe's pending DSC verification to prevent RoC filing bottlenecks",
+                    "Multi-Entity Selector: Allows founders with multiple ventures to switch entities seamlessly without re-logging in",
+                    "Lifecycle Telemetry: Displays DSC validity window (15 Jan 2024 to 15 Jan 2027) and MSME completion status"
+                  ]}
                 />
-              ))}
+
+                {/* Screen 2: Entity Detail & Document Vault */}
+                <ImagePlaceholder
+                  imageSrc="/images/projects/registerkaro/rk-mobile-app-entity-vault.png"
+                  title="MOBILE ENTITY DETAIL & SECURE DOCUMENT VAULT"
+                  badge="MOBILE APP [DOCUMENT VAULT]"
+                  caption="Entity Detail screen featuring real-time incorporation milestone progress (60% overall progress) and 1-click downloads for statutory PDF certificates (Certificate of Incorporation, PAN, TAN)."
+                  objectFit="object-contain"
+                  aspect=""
+                  imgAspect="max-h-[580px]"
+                  onImageClick={setModalImage}
+                  annotations={[
+                    "Incorporation Progress Bar: Clear 60% progress indicator provides transparent reassurance during government review",
+                    "One-Tap Vault Downloads: Instant access to Certificate of Incorporation, PAN, and TAN certificates (3.2 MB PDFs)",
+                    "Quick Links Navigation: Contextual shortcuts provide instant access to essential compliance tools and filing history"
+                  ]}
+                />
+              </div>
+
+              {/* Mobile Design Architecture Principles */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 p-6 rounded-2xl bg-neutral-50 border border-neutral-200">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-500" />
+                    <h5 className="text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider">
+                      Proactive KYC Nudges
+                    </h5>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
+                    Time-sensitive compliance blockers (like Director KYC verification for DSC tokens) surface as immediate top-level action cards rather than getting buried in email threads.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <h5 className="text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider">
+                      Instant Document Vault
+                    </h5>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
+                    Founders frequently need their Certificate of Incorporation, PAN, and TAN on the go for vendor KYC or bank accounts. All certificates are stored with 1-click verified PDF downloads.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-purple-500" />
+                    <h5 className="text-xs font-mono font-bold text-neutral-900 uppercase tracking-wider">
+                      Multi-Entity Switcher
+                    </h5>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
+                    Serial entrepreneurs managing multiple entities can switch corporate contexts instantly, reviewing filings and active legal services across ventures from a single interface.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* CHAPTER 06: SYSTEM THINKING (Product Ecosystem + Journey + Design System)  */}
+        {/* CHAPTER 06: SYSTEM THINKING (Product Ecosystem + Journey Mapping)          */}
         {/* ========================================================================= */}
         <section id="system-thinking" className="flex flex-col gap-16 scroll-mt-28 border-t border-black/[0.08] pt-16">
           
@@ -1724,7 +1997,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </h2>
 
             {/* System Map Graphic */}
-            <div className="p-8 rounded-3xl bg-neutral-950 text-white border border-neutral-800 flex flex-col gap-8">
+            <div className="p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-neutral-950 text-white border border-neutral-800 flex flex-col gap-6 sm:gap-8">
               <div className="flex flex-col items-center gap-4">
                 
                 {/* Node: Customer */}
@@ -1750,7 +2023,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                   <span className="text-xs font-mono font-bold text-emerald-400 tracking-wider">
                     CORE PLATFORM
                   </span>
-                  <div className="grid grid-cols-4 gap-2 text-center text-xs font-mono text-neutral-300">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[11px] sm:text-xs font-mono text-neutral-300">
                     <span className="p-2 bg-neutral-800 rounded-lg">USERS</span>
                     <span className="p-2 bg-neutral-800 rounded-lg">SERVICES</span>
                     <span className="p-2 bg-neutral-800 rounded-lg">DOCUMENTS</span>
@@ -1814,7 +2087,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </div>
 
             {/* Deep Stage Inspector */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-neutral-200 shadow-sm flex flex-col gap-6">
+            <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-white border border-neutral-200 shadow-sm flex flex-col gap-4 sm:gap-6">
               <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
@@ -1858,73 +2131,6 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Design System Section */}
-          <div className="flex flex-col gap-6 pt-12 border-t border-neutral-200">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold uppercase">
-                SCALABILITY
-              </span>
-              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                06.3 DESIGN SYSTEM
-              </span>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-display font-medium text-neutral-900 leading-tight">
-              Designing the system, not just the screens
-            </h3>
-
-            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl">
-              "As the number of screens increased, consistency became a product problem, not just a visual one. I started treating reusable patterns as building blocks rather than designing each screen independently."
-            </p>
-
-            {/* Design System Tokens & Components Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 sm:p-8 rounded-2xl bg-neutral-50 border border-neutral-200">
-              <div className="p-4 bg-white rounded-xl border border-neutral-200">
-                <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider block mb-2">TYPOGRAPHY</span>
-                <p className="text-xs text-neutral-700 font-display font-semibold text-lg leading-tight mb-1">Display & Sans</p>
-                <p className="text-[11px] font-mono text-neutral-500">Structured data hierarchy with high-legibility numerals for compliance tracking.</p>
-              </div>
-
-              <div className="p-4 bg-white rounded-xl border border-neutral-200">
-                <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider block mb-2">COLOUR PALETTE</span>
-                <div className="flex items-center gap-1.5 mb-2">
-                  <span className="w-5 h-5 rounded-full bg-[#059669]" title="Emerald Green" />
-                  <span className="w-5 h-5 rounded-full bg-[#065f46]" title="Deep Forest" />
-                  <span className="w-5 h-5 rounded-full bg-[#111827]" title="Charcoal" />
-                  <span className="w-5 h-5 rounded-full bg-[#fbfbfd] border" title="Warm White" />
-                </div>
-                <p className="text-[11px] font-mono text-neutral-500">Government trust green paired with stark charcoal and accessible high-contrast accents.</p>
-              </div>
-
-              <div className="p-4 bg-white rounded-xl border border-neutral-200">
-                <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider block mb-2">COMPONENTS</span>
-                <ul className="text-xs text-neutral-700 space-y-1 font-mono">
-                  <li>• Milestone Steppers</li>
-                  <li>• Dropzone Drag Docks</li>
-                  <li>• Registry Status Badges</li>
-                  <li>• Entity Action Pebbles</li>
-                </ul>
-              </div>
-
-              <div className="p-4 bg-white rounded-xl border border-neutral-200">
-                <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider block mb-2">REUSABLE PATTERNS</span>
-                <ul className="text-xs text-neutral-700 space-y-1 font-mono">
-                  <li>• Form Progressive Save</li>
-                  <li>• Document Verification Dock</li>
-                  <li>• MCA Statutory Tracker</li>
-                  <li>• Escrow Payment Splits</li>
-                </ul>
-              </div>
-            </div>
-
-            <ImagePlaceholder
-              badge="DESIGN SYSTEM"
-              title="DESIGN SYSTEM COMPONENT LIBRARY"
-              description="Reusable components and token architecture powering the RegisterKaro multi-channel experience."
-              caption="Component library showing form controls, status pills, stepper nodes, and document uploaders."
-            />
           </div>
         </section>
 
@@ -2050,7 +2256,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </p>
 
             {/* Edge Cases Selector */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
               {edgeCases.map((ec, idx) => (
                 <button
                   key={idx}
@@ -2069,7 +2275,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </div>
 
             {/* Active Edge Case Detail Docket */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-50 border border-neutral-200/90 flex flex-col gap-4">
+            <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-neutral-50 border border-neutral-200/90 flex flex-col gap-4">
               <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold text-neutral-900 uppercase">
@@ -2082,14 +2288,14 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                 <span className="text-xs font-mono text-neutral-400">Defensive UX Logic</span>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 my-2">
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 my-2">
                 {edgeCases[selectedEdgeCase].flow.map((step, idx) => (
                   <React.Fragment key={idx}>
-                    <div className="p-3 bg-white rounded-xl border border-neutral-200 text-xs font-mono text-neutral-800 flex-1 text-center w-full">
+                    <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200 text-xs font-mono text-neutral-800 flex-1 text-center w-full">
                       {step}
                     </div>
                     {idx < edgeCases[selectedEdgeCase].flow.length - 1 && (
-                      <span className="text-neutral-400 font-mono text-sm">→</span>
+                      <span className="text-neutral-400 font-mono text-xs sm:text-sm rotate-90 sm:rotate-0 my-0.5 sm:my-0">↓</span>
                     )}
                   </React.Fragment>
                 ))}
@@ -2161,16 +2367,16 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
         </section>
 
         {/* ========================================================================= */}
-        {/* CHAPTER 08: FUTURE OPPORTUNITY (WhatsApp-first Conversational Concept)     */}
+        {/* CHAPTER 08: FUTURE OPPORTUNITY (WhatsApp Automation & Operations Model)     */}
         {/* ========================================================================= */}
-        <section id="future-opportunity" className="flex flex-col gap-12 scroll-mt-28 border-t border-black/[0.08] pt-16">
+        <section id="future-opportunity" className="flex flex-col gap-16 scroll-mt-28 border-t border-black/[0.08] pt-16">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold uppercase">
                 FUTURE OPPORTUNITY
               </span>
               <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                08 FUTURE OPPORTUNITY
+                08 FUTURE SCOPE & AUTOMATION
               </span>
             </div>
 
@@ -2179,101 +2385,181 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
             </h2>
 
             <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl">
-              The future wasn't about replacing the web or mobile product: it was about adding a low-friction conversational entry point on top of the existing system.
+              The future was not about replacing the web or mobile product: it was about introducing an automated conversational entry point directly connected to the existing backend ecosystem.
             </p>
           </div>
 
-          {/* Past -> Present -> Future Evolution */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600">
-              <span className="text-xs font-mono font-bold text-neutral-500 uppercase block mb-1">PAST</span>
-              <h4 className="text-lg font-bold text-neutral-900 mb-2">Manual WhatsApp Groups</h4>
-              <p className="text-xs leading-relaxed">
-                Disjointed chat threads, manual document collecting, high operational overhead, and human bottlenecking.
-              </p>
+          {/* 08.1 EVOLUTIONARY OPERATIONS MODEL (The Graphical Diagram) */}
+          <div className="flex flex-col gap-6 pt-6">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                08.1 OPERATIONS MODEL: PAST, PRESENT & FUTURE
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-neutral-900">
+                WhatsApp automation is an evolution, not a replacement.
+              </h3>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-neutral-300 shadow-xs text-neutral-800">
-              <span className="text-xs font-mono font-bold text-blue-600 uppercase block mb-1">PRESENT</span>
-              <h4 className="text-lg font-bold text-neutral-900 mb-2">Web + Mobile Product</h4>
-              <p className="text-xs leading-relaxed">
-                Structured progressive form milestones, secure cloud document vault, and real-time MCA tracking.
-              </p>
-            </div>
+            <p className="text-base text-neutral-600 leading-relaxed max-w-3xl">
+              Many digital transformations fail by forcing every customer into web portals before they are ready. While web and app platforms established structured milestones, Tier 2 and Tier 3 founders often lack dedicated laptop access and encounter app installation drop-offs. We conceptualized an evolutionary model where WhatsApp becomes a frictionless front door backed by the exact same central operational database.
+            </p>
 
-            <div className="p-6 rounded-2xl bg-emerald-950 text-emerald-100 border border-emerald-800 shadow-md">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-mono font-bold text-emerald-400 uppercase">FUTURE VISION</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-800/80 text-emerald-200">CONCEPT</span>
-              </div>
-              <h4 className="text-lg font-bold text-white mb-2">Connected WhatsApp Automation</h4>
-              <p className="text-xs leading-relaxed text-emerald-200/80">
-                Low-friction conversational onboarding directly in WhatsApp, sharing the exact same core backend state.
-              </p>
+            <ImagePlaceholder
+              imageSrc="/images/projects/registerkaro/rk-future-evolution-model.png"
+              title="CUSTOMER ONBOARDING & OPERATIONS EVOLUTION MODEL"
+              badge="STRATEGIC ROADMAP [PAST -> PRESENT -> FUTURE]"
+              caption="Three-stage operational evolution mapping how automated WhatsApp intake scales business reach without replacing existing web infrastructure."
+              aspect="aspect-[16/9]"
+              onImageClick={setModalImage}
+              annotations={[
+                "Past Model: Manual WhatsApp groups suffered from disjointed threads, offline CA bottlenecks, and limited scalability",
+                "Present Model: Web and mobile apps introduced structured workflows, yet observed laptop barriers and portal friction among Tier 2/3 founders",
+                "Proposed Future: Automated WhatsApp conversational intake routes seamlessly into the existing RegisterKaro dashboard with zero operational re-work"
+              ]}
+            />
+
+            {/* Strategic Callout Banner */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center gap-3 text-emerald-950 text-xs sm:text-sm font-medium">
+              <Sparkles size={18} className="text-emerald-700 shrink-0" />
+              <span>
+                <strong>Strategic Principle:</strong> WhatsApp automation is an evolution, not a replacement. It preserves 100% of core backend engineering while drastically expanding customer acquisition reach.
+              </span>
             </div>
           </div>
 
-          {/* WhatsApp Concept Interactive Flow Simulation */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800 flex flex-col gap-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-neutral-800 pb-4 gap-2">
-              <div>
-                <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider block">
-                  PROPOSED CONVERSATIONAL FLOW CONCEPT
-                </span>
-                <span className="text-xs text-neutral-400 font-sans">
-                  Interactive flow step simulation
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                {waSteps.map((s, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setActiveWaStep(idx)}
-                    className={`w-7 h-7 rounded-full text-xs font-mono flex items-center justify-center transition-all cursor-pointer ${
-                      activeWaStep === idx 
-                        ? 'bg-emerald-500 text-black font-bold' 
-                        : 'bg-neutral-800 text-neutral-400 hover:text-white'
-                    }`}
-                  >
-                    {s.step}
-                  </button>
-                ))}
-              </div>
+          {/* 08.2 CONVERSATIONAL ONBOARDING JOURNEY (The 3 WhatsApp Screens in Chats) */}
+          <div className="flex flex-col gap-8 pt-10 border-t border-neutral-200">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                08.2 CONVERSATIONAL ONBOARDING IN ACTION
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-neutral-900">
+                From initial intent to statutory document intake inside chat.
+              </h3>
             </div>
 
-            {/* Simulated Chat Interface Card */}
-            <div className="max-w-xl mx-auto w-full p-5 rounded-2xl bg-neutral-950 border border-neutral-800 flex flex-col gap-4 font-sans shadow-inner">
-              <div className="flex items-center gap-2 pb-3 border-b border-neutral-800/80 text-xs font-mono text-neutral-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="font-semibold text-neutral-200">RegisterKaro Verified Bot</span>
-                <span className="text-[10px] text-neutral-500">Official API</span>
-              </div>
+            <p className="text-base text-neutral-600 leading-relaxed max-w-3xl">
+              Statutory legal processes involve multi-step decisions: legal service identification, package comparison, and KYC document uploads. We translated each step of the web application into native, interactive conversational UI components directly inside WhatsApp chat threads.
+            </p>
 
-              {/* Bot Bubble */}
-              <div className="bg-neutral-800/90 text-neutral-100 p-4 rounded-2xl rounded-tl-xs text-xs sm:text-sm leading-relaxed max-w-md border border-neutral-700/60">
-                {waSteps[activeWaStep].msg}
-              </div>
+            {/* 3 WhatsApp Production Screens Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              
+              {/* Screen 1: Service Selection */}
+              <ImagePlaceholder
+                imageSrc="/images/projects/registerkaro/rk-future-whatsapp-service-selection.png"
+                title="STAGE 01: SERVICE SELECTION & GREETING"
+                badge="WHATSAPP CHAT [STAGE 01]"
+                caption="Verified business bot greets customer with instant conversational intent capture across Trademark, Incorporation, MSME, and GST."
+                aspect=""
+                imgAspect="max-h-[580px]"
+                onImageClick={setModalImage}
+                annotations={[
+                  "Verified business badge establishes immediate institutional trust with first-time founders",
+                  "Interactive quick-reply chips eliminate typing fatigue and eradicate spelling ambiguity",
+                  "Contextual service confirmation branches straight into tailored statutory workflows"
+                ]}
+              />
 
-              {/* Interactive Quick Action Chips */}
-              <div className="flex flex-col gap-2 pt-2">
-                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">
-                  Customer Options:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {waSteps[activeWaStep].options.map((opt, oidx) => (
-                    <span 
-                      key={oidx} 
-                      className="px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-600/50 text-emerald-300 text-xs font-mono"
-                    >
-                      {opt}
-                    </span>
-                  ))}
+              {/* Screen 2: Interactive Pricing Packages */}
+              <ImagePlaceholder
+                imageSrc="/images/projects/registerkaro/rk-future-whatsapp-package-selection.png"
+                title="STAGE 02: IN-CHAT PRICING & SELECTION"
+                badge="WHATSAPP CHAT [STAGE 02]"
+                caption="Interactive pricing cards surfaced inside WhatsApp chat allowing founders to compare Standard (Rs 7,999) vs Premium tiers."
+                aspect=""
+                imgAspect="max-h-[580px]"
+                onImageClick={setModalImage}
+                annotations={[
+                  "Structured in-chat cards display class counts, search depth, and government filing inclusions with zero fine print",
+                  "Popular badge on the Standard tier (Rs 7,999) anchors decision-making and reduces decision paralysis",
+                  "One-tap selection message locks package choice into the unified backend session"
+                ]}
+              />
+
+              {/* Screen 3: Statutory Document Uploads */}
+              <ImagePlaceholder
+                imageSrc="/images/projects/registerkaro/rk-future-whatsapp-doc-upload.png"
+                title="STAGE 03: STATUTORY DOCUMENT INTAKE"
+                badge="WHATSAPP CHAT [STAGE 03]"
+                caption="Structured document upload cards for PAN, Aadhaar, and Brand Name directly within the conversational interface."
+                aspect=""
+                imgAspect="max-h-[580px]"
+                onImageClick={setModalImage}
+                annotations={[
+                  "Pre-payment statutory intake ensures documents are validated before collecting fees",
+                  "Native upload cards allow customers to snap camera photos or attach PDFs without leaving WhatsApp",
+                  "Upload status feedback prevents defective submissions before legal CA review"
+                ]}
+              />
+
+            </div>
+          </div>
+
+          {/* 08.3 TECHNICAL SYSTEM ARCHITECTURE (The Technical Blueprint Image) */}
+          <div className="flex flex-col gap-8 pt-10 border-t border-neutral-200">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                08.3 TECHNICAL SYSTEM ARCHITECTURE
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-neutral-900">
+                5-Level architecture: WhatsApp automation integration overview.
+              </h3>
+            </div>
+
+            <p className="text-base text-neutral-600 leading-relaxed max-w-3xl">
+              A common pitfall with conversational bots is creating an isolated database that fails to sync with core operations. In this proposed architecture, WhatsApp is purely a client-tier touchpoint. All state, verification, and payments live inside the existing core backend.
+            </p>
+
+            <ImagePlaceholder
+              imageSrc="/images/projects/registerkaro/rk-future-system-architecture.png"
+              title="SYSTEM ARCHITECTURE: WHATSAPP AUTOMATION INTEGRATION"
+              badge="INTEGRATION BLUEPRINT [LEVELS 1 TO 5]"
+              caption="Comprehensive 5-level architectural blueprint detailing how WhatsApp touchpoints connect into the existing backend and admin dashboard."
+              aspect="aspect-[16/9]"
+              onImageClick={setModalImage}
+              annotations={[
+                "Level 1: Unified Touchpoints (WhatsApp, Web App, Mobile App) all route to the identical ingestion pipeline",
+                "Level 2: Existing RegisterKaro core backend (User, Service, Case, Document, Payment, Notification) requires zero changes",
+                "Level 3: Operations Admin Dashboard remains the single control center, managing WhatsApp via configuration only",
+                "Level 4: Case Detail view acts as the immutable single source of truth with real-time read-only WhatsApp audit logs",
+                "Level 5: 7-step automation logic governs entry, document collection, payment, MCA filings, and optional human handoff"
+              ]}
+            />
+
+            {/* 4 Key Architectural Takeaways Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  num: '01',
+                  title: 'WhatsApp Replaces Nothing',
+                  desc: 'All entry points flow into the same system. Web, mobile, and assisted channels remain fully operational.'
+                },
+                {
+                  num: '02',
+                  title: 'Core Backend Logic',
+                  desc: 'All business logic, document verification rules, and payment pipelines live in the existing backend.'
+                },
+                {
+                  num: '03',
+                  title: 'Admin Control Center',
+                  desc: 'Admin dashboard remains the central operational cockpit. WhatsApp automation is configuration only.'
+                },
+                {
+                  num: '04',
+                  title: 'Scalable Operations',
+                  desc: 'Automation reduces repetitive manual document follow-up while scaling caseload throughput.'
+                }
+              ].map((item, i) => (
+                <div key={i} className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs flex flex-col justify-between">
+                  <span className="text-xs font-mono text-emerald-600 font-bold mb-2">{item.num}</span>
+                  <h4 className="text-sm font-bold text-neutral-900 mb-1.5">{item.title}</h4>
+                  <p className="text-xs text-neutral-600 leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
+              ))}
             </div>
 
-            <p className="text-xs text-neutral-400 text-center max-w-lg mx-auto">
+            <p className="text-xs text-neutral-500 font-mono text-center max-w-xl mx-auto pt-2">
               Note: Presented as my future product vision and architectural proposal, not as an already shipped RegisterKaro feature.
             </p>
           </div>
@@ -2512,7 +2798,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               How I would know if this actually worked
             </h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {[
                 { title: 'ACQUISITION', items: ['WhatsApp to application conversion', 'Service discovery to package selection'] },
                 { title: 'ACTIVATION', items: ['Application started to payment completed', 'First milestone completion speed'] },
@@ -2570,7 +2856,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
                 'USER JOURNEY MAPPING',
                 'INFORMATION ARCHITECTURE',
                 'UI DESIGN',
-                'DESIGN SYSTEMS',
+                'ECOSYSTEM ARCHITECTURE',
                 'SYSTEM THINKING',
                 'TECH COLLABORATION',
                 'BUSINESS THINKING',
@@ -2690,43 +2976,43 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
       {/* Lightbox Fullscreen Modal */}
       {modalImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-8"
           onClick={() => setModalImage(null)}
         >
           <div 
-            className="relative max-w-5xl w-full max-h-[92vh] bg-neutral-900 border border-neutral-700 rounded-2xl overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200"
+            className="relative max-w-5xl w-full max-h-[94vh] bg-neutral-900 border border-neutral-700 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800 bg-neutral-950">
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 font-bold uppercase">
+            <div className="flex items-center justify-between px-3.5 sm:px-6 py-2.5 sm:py-4 border-b border-neutral-800 bg-neutral-950 gap-2">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                <span className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 font-bold uppercase shrink-0">
                   {modalImage.badge || 'SCREENSHOT'}
                 </span>
-                <h3 className="text-sm sm:text-base font-bold text-white truncate max-w-md">
+                <h3 className="text-xs sm:text-base font-bold text-white truncate">
                   {modalImage.title}
                 </h3>
               </div>
               <button 
                 type="button"
                 onClick={() => setModalImage(null)}
-                className="p-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors cursor-pointer shrink-0 touch-manipulation"
                 title="Close (Esc)"
               >
                 <X size={18} />
               </button>
             </div>
             
-            <div className="overflow-auto p-4 sm:p-6 flex items-center justify-center bg-black/60 max-h-[calc(92vh-130px)]">
+            <div className="overflow-auto p-2 sm:p-4 md:p-6 flex items-center justify-center bg-black/60 max-h-[calc(94vh-120px)]">
               <img 
                 src={modalImage.src} 
                 alt={modalImage.title} 
-                className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl" 
+                className="max-w-full max-h-[78vh] object-contain rounded-lg shadow-2xl" 
               />
             </div>
             
             {modalImage.caption && (
-              <div className="px-6 py-3.5 border-t border-neutral-800 bg-neutral-950 text-xs font-mono text-neutral-400 flex items-center gap-2">
-                <span className="text-emerald-500 font-semibold">FIG:</span>
+              <div className="px-3.5 sm:px-6 py-2.5 sm:py-3.5 border-t border-neutral-800 bg-neutral-950 text-[11px] sm:text-xs font-mono text-neutral-400 flex items-start sm:items-center gap-1.5 sm:gap-2 leading-tight">
+                <span className="text-emerald-500 font-semibold shrink-0">FIG:</span>
                 <span>{modalImage.caption}</span>
               </div>
             )}

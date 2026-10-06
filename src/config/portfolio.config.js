@@ -39,10 +39,10 @@ export const PORTFOLIO_CONFIG = {
   },
 
   navigation: [
-    { id: "home", label: "Home" },
-    { id: "projects", label: "Projects" },
-    { id: "about", label: "About Manoj" },
-    { id: "play", label: "Play with Manoj", icon: "✦" }
+    { id: "home", label: "Home", shortLabel: "Home" },
+    { id: "projects", label: "Projects", shortLabel: "Projects" },
+    { id: "about", label: "About Manoj", shortLabel: "About" },
+    { id: "play", label: "Play with Manoj", shortLabel: "Play", icon: "✦" }
   ],
 
   projects: [
