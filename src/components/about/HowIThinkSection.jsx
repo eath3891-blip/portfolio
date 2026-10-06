@@ -56,15 +56,15 @@ export default function HowIThinkSection() {
         </div>
       </motion.div>
 
-      {/* Main Grid: Left Visual Anchor + Right 6 Interactive Principles */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+      {/* ── DESKTOP: Dual-Column Interactive Principle Showcase (>= lg) ── */}
+      <div className="hidden lg:grid grid-cols-12 gap-12 items-start w-full min-w-0">
         {/* Left Column: Design Artifact Visual Anchor + Active Principle Deep Dive (Span 5) */}
         <motion.div
           initial={{ opacity: 0, y: 45, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28"
+          className="col-span-5 flex flex-col gap-6 sticky top-28"
         >
           {/* Design Artifact Visual Frame */}
           <div className="relative w-full aspect-[4/3] rounded-[2.2rem] overflow-hidden bg-[#e5e5ea] border border-white/80 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06)] select-none">
@@ -115,7 +115,7 @@ export default function HowIThinkSection() {
         </motion.div>
 
         {/* Right Column: 6 Scannable Interactive Principles (Span 7) */}
-        <div className="lg:col-span-7 flex flex-col divide-y divide-black/[0.06] border-t border-b border-black/[0.06]">
+        <div className="col-span-7 flex flex-col divide-y divide-black/[0.06] border-t border-b border-black/[0.06]">
           {howIThink.principles.map((p, idx) => {
             const isSelected = p.number === selectedNumber;
 
@@ -174,6 +174,31 @@ export default function HowIThinkSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* ── MOBILE: Concise Scannable Principle Cards (< lg) ── */}
+      <div className="flex lg:hidden flex-col gap-3 w-full min-w-0">
+        {howIThink.principles.map((p) => (
+          <div
+            key={`mobile-${p.number}`}
+            className="p-4 rounded-2xl bg-white border border-black/[0.06] shadow-2xs flex flex-col gap-1.5"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono font-bold text-black">
+                Principle {p.number}
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-black/60" />
+            </div>
+
+            <h3 className="font-display text-base font-bold text-[#141416] tracking-tight">
+              {p.title}
+            </h3>
+
+            <p className="text-xs text-[#55555c] leading-relaxed pt-0.5">
+              {p.oneLiner}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

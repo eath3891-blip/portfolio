@@ -65,7 +65,7 @@
 /* Global Typography Scale Tokens (Responsive & Optical) */
 .type-display {
   font-family: var(--font-primary);
-  font-size: clamp(2.75rem, 5.5vw, 5.25rem);
+  font-size: clamp(1.9rem, 5.5vw, 5.25rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
   font-weight: 700;
@@ -73,7 +73,7 @@
 
 .type-h1 {
   font-family: var(--font-primary);
-  font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  font-size: clamp(1.6rem, 4.2vw, 3.75rem);
   line-height: 1.05;
   letter-spacing: -0.035em;
   font-weight: 700;
@@ -81,7 +81,7 @@
 
 .type-h2 {
   font-family: var(--font-primary);
-  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-size: clamp(1.35rem, 3vw, 2.65rem);
   line-height: 1.12;
   letter-spacing: -0.025em;
   font-weight: 700;
@@ -89,7 +89,7 @@
 
 .type-h3 {
   font-family: var(--font-primary);
-  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.75rem);
   line-height: 1.22;
   letter-spacing: -0.02em;
   font-weight: 600;

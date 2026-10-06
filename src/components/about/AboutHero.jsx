@@ -54,7 +54,7 @@ export default function AboutHero() {
             variants={{
               visible: { transition: { staggerChildren: 0.09 } }
             }}
-            className="font-display leading-[0.98] sm:leading-[1.0] tracking-[-0.038em] text-[clamp(2.1rem,3.8vw,3.45rem)] max-w-[780px]"
+            className="font-display leading-[1.05] sm:leading-[1.0] tracking-[-0.038em] text-[clamp(1.65rem,5.2vw,3.45rem)] max-w-[780px]"
           >
             {/* Group 1: Primary Identity (Near Black, Full Prominence) */}
             <motion.span
@@ -95,7 +95,7 @@ export default function AboutHero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg sm:text-xl md:text-[21px] font-normal text-[#66676D] leading-[1.5] max-w-xl mt-1 sm:mt-2"
+            className="text-base sm:text-xl md:text-[21px] font-normal text-[#66676D] leading-[1.5] max-w-xl mt-1 sm:mt-2"
           >
             {hero.supportingLine}
           </motion.p>
@@ -106,9 +106,9 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex justify-center lg:justify-end"
+          className="lg:col-span-5 flex justify-center lg:justify-end w-full"
         >
-          <div className="group relative w-full max-w-[420px] aspect-[4/4.8] sm:aspect-[4/4.6] rounded-3xl overflow-hidden bg-[#e5e5ea] border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.04)] select-none">
+          <div className="group relative w-full max-w-[320px] sm:max-w-[420px] aspect-[4/4.8] sm:aspect-[4/4.6] rounded-3xl overflow-hidden bg-[#e5e5ea] border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.04)] select-none">
             {/* Crossfading Slideshow Container */}
             <AnimatePresence mode="wait">
               <motion.div

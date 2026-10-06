@@ -56,9 +56,9 @@ export default function OriginStory() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex justify-center lg:justify-end"
+          className="lg:col-span-5 flex justify-center lg:justify-end w-full"
         >
-          <div className="group relative w-full max-w-[380px] aspect-[4/3] rounded-3xl overflow-hidden border border-black/[0.08] shadow-[0_6px_24px_rgba(0,0,0,0.03)] bg-[#e5e5ea] select-none">
+          <div className="group relative w-full max-w-[320px] sm:max-w-[380px] aspect-[4/3] rounded-3xl overflow-hidden border border-black/[0.08] shadow-[0_6px_24px_rgba(0,0,0,0.03)] bg-[#e5e5ea] select-none">
             <img
               src={origin.image.url}
               alt={origin.image.alt}

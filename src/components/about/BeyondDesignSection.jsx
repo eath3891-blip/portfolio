@@ -60,7 +60,7 @@ function BentoTile({ item, index }) {
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative rounded-[2.2rem] sm:rounded-[2.4rem] overflow-hidden border border-white/80 ring-1 ring-black/[0.04] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06)] flex flex-col justify-end p-5 sm:p-6 select-none ${item.spanClass}`}
+      className={`group relative rounded-3xl sm:rounded-[2.4rem] overflow-hidden border border-white/80 ring-1 ring-black/[0.04] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06)] flex flex-col justify-end p-4 sm:p-6 select-none !min-h-[190px] sm:!min-h-[300px] ${item.spanClass}`}
       style={{ backgroundColor: item.fallbackColor }}
     >
       {/* Background Image with subtle scale on hover (1.00 -> 1.03) */}

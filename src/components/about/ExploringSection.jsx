@@ -69,9 +69,9 @@ export default function ExploringSection() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex justify-center lg:justify-end"
+          className="lg:col-span-5 flex justify-center lg:justify-end w-full"
         >
-          <div className="group relative w-full max-w-[480px] aspect-[3/2] rounded-[2.2rem] sm:rounded-[2.4rem] overflow-hidden border border-black/[0.08] ring-1 ring-black/[0.03] shadow-[0_20px_48px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.03)] bg-[#f7f8fb] select-none">
+          <div className="group relative w-full max-w-[320px] sm:max-w-[480px] aspect-[3/2] rounded-[2rem] sm:rounded-[2.4rem] overflow-hidden border border-black/[0.08] ring-1 ring-black/[0.03] shadow-[0_20px_48px_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.03)] bg-[#f7f8fb] select-none">
             {/* Top Specular Sheen */}
             <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 via-white/10 to-transparent pointer-events-none z-10 rounded-t-[2.2rem] sm:rounded-t-[2.4rem]" />
 

@@ -23,15 +23,15 @@ export default function EvolutionStatement() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 md:gap-6"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 md:gap-6 w-full px-2"
         >
           {evolution.tags.map((tag, idx) => (
             <React.Fragment key={tag}>
-              <span className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#141416]">
+              <span className="font-display text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#141416]">
                 {tag}
               </span>
               {idx < evolution.tags.length - 1 && (
-                <span className="text-2xl sm:text-3xl md:text-4xl text-[#86868b] font-light select-none">
+                <span className="text-base sm:text-2xl md:text-4xl text-[#86868b] font-light select-none">
                   →
                 </span>
               )}
@@ -45,14 +45,14 @@ export default function EvolutionStatement() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-3 text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-[#71717a] leading-relaxed max-w-2xl"
+          className="flex flex-col gap-2.5 sm:gap-3 text-base sm:text-xl md:text-2xl font-medium tracking-tight text-[#71717a] leading-relaxed max-w-2xl px-2"
         >
           {evolution.lines.map((line, idx) => {
             const isLast = idx === evolution.lines.length - 1;
             return (
               <p
                 key={idx}
-                className={isLast ? 'text-[#141416] font-bold text-xl sm:text-2xl md:text-[28px] mt-2' : ''}
+                className={isLast ? 'text-[#141416] font-bold text-lg sm:text-2xl md:text-[28px] mt-1 sm:mt-2' : ''}
               >
                 {line}
               </p>

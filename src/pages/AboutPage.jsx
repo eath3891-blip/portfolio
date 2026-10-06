@@ -32,12 +32,12 @@ export default function AboutPage({ onBackToHome, onReplayIntro, onNavigateToPro
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] flex flex-col">
+    <div className="w-full min-h-screen bg-[#fbfbfd] text-[#1d1d1f] flex flex-col overflow-x-hidden">
       {/* Top Bar with Open to Work & Download Resume pills */}
       <TopBar onReplayIntro={onReplayIntro || onBackToHome} />
 
       {/* Main Editorial Content Container */}
-      <main className="max-w-[1280px] mx-auto px-6 md:px-12 flex flex-col">
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 flex flex-col min-w-0">
         {/* 1. Who I Am: Opening Section */}
         <AboutHero />
 
@@ -58,7 +58,7 @@ export default function AboutPage({ onBackToHome, onReplayIntro, onNavigateToPro
 
         {/* 7. What's Next: "And now, I'm building." */}
         <ExploringSection />
-      </main>
+      </div>
 
       {/* 8. Final CTA: Full viewport width & reaching the bottom of the page */}
       <AboutFinalCTA onNavigateToProjects={onNavigateToProjects} />
