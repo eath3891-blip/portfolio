@@ -12,12 +12,11 @@ export default function TopBar({ onReplayIntro }) {
 
   return (
     <header className="relative w-full pt-3 sm:pt-6 md:pt-8 px-4 sm:px-6 md:px-12 flex items-center justify-between z-40 pointer-events-auto">
-      {/* Top Left: Open to Work Pill - Symmetrically matched in height & width */}
+      {/* Top Left: Open to Work Pill - Non-clickable status badge matching Resume button dimensions */}
       <div className="flex items-center">
-        <button
-          onClick={onReplayIntro}
-          title="Open to Work • Click to replay welcome intro"
-          className="group flex items-center justify-start gap-1.5 sm:gap-2.5 w-auto sm:w-[168px] h-[36px] sm:h-[42px] pl-1.5 pr-3 sm:pr-3.5 py-1 sm:py-1.5 rounded-full bg-white/90 hover:bg-white backdrop-blur-md border border-emerald-500/40 hover:border-emerald-500/70 shadow-[0_0_12px_rgba(16,185,129,0.06)] transition-all duration-300 ease-out hover:scale-102 active:scale-95 text-left select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/30 cursor-pointer"
+        <div
+          title="Open to Work"
+          className="group flex items-center justify-start gap-1.5 sm:gap-2.5 w-auto sm:w-[168px] h-[36px] sm:h-[42px] pl-1.5 pr-3 sm:pr-3.5 py-1 sm:py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.06)] text-left select-none cursor-default"
         >
           {/* Circular container holding the Happy Cat GIF with green border */}
           <div className="relative w-6 h-6 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden border border-emerald-500/30 bg-[#fafafa] flex-shrink-0 flex items-center justify-center">
@@ -27,7 +26,7 @@ export default function TopBar({ onReplayIntro }) {
                 e.currentTarget.src = "https://media.tenor.com/lfDATg4Bhc0AAAAC/happy-cat.gif";
               }}
               alt="Happy Cat"
-              className="w-full h-full object-cover select-none pointer-events-none group-hover:scale-110 transition-transform duration-300"
+              className="w-full h-full object-cover select-none pointer-events-none"
             />
           </div>
 
@@ -38,10 +37,10 @@ export default function TopBar({ onReplayIntro }) {
           </span>
 
           {/* Text: Open to Work */}
-          <span className="text-[11.5px] sm:text-[13px] font-semibold tracking-tight text-[#1d1d1f] font-sans group-hover:text-emerald-700 transition-colors whitespace-nowrap">
+          <span className="text-[11.5px] sm:text-[13px] font-semibold tracking-tight text-[#1d1d1f] font-sans whitespace-nowrap">
             {designer.statusBadge || "Open to Work"}
           </span>
-        </button>
+        </div>
       </div>
 
       {/* Top Right: Resume Button - Equal height and width */}

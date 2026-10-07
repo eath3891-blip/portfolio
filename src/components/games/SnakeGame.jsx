@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { Play, Pause, RotateCcw, Trophy, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Gauge } from 'lucide-react';
 
 /**
@@ -321,17 +322,43 @@ export default function SnakeGame() {
             )}
 
             {gameState === 'gameover' && (
-              <div className="flex flex-col items-center gap-2.5">
-                <span className="text-sm font-bold tracking-tight text-rose-400">Game Over</span>
-                <p className="text-xs text-[#a1a1a6]">Final Score: {score}</p>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center gap-2 max-w-[220px]"
+              >
+                {/* Mascot Dancing Cat Celebrating the Run */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-white/20 shadow-[0_0_24px_rgba(255,255,255,0.18)] bg-black shrink-0">
+                  <img
+                    src="/cat-dance.gif"
+                    alt="Dancing Cat Mascot"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col items-center gap-0.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold">
+                    {score > 0 && score === highScore ? 'New High Score!' : 'Game Over'}
+                  </span>
+                  <span className="text-sm sm:text-base font-bold tracking-tight text-white">
+                    {score} Points
+                  </span>
+                  <p className="text-[10.5px] text-neutral-300 leading-tight">
+                    {score > 0 && score === highScore
+                      ? 'Legendary run! Mascot is grooving for you!'
+                      : 'Reflex run complete! Cat is still dancing.'}
+                  </p>
+                </div>
+
                 <button
                   onClick={handleRestart}
-                  className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black font-semibold text-xs hover:bg-white/90 active:scale-95 transition-all shadow-sm"
+                  className="mt-1 inline-flex items-center gap-1.5 px-4 py-1.5 sm:py-2 rounded-full bg-white text-black font-semibold text-xs hover:bg-neutral-100 active:scale-95 transition-all shadow-sm cursor-pointer"
                 >
                   <RotateCcw size={12} />
-                  <span>Try Again</span>
+                  <span>Play Again</span>
                 </button>
-              </div>
+              </motion.div>
             )}
           </div>
         )}

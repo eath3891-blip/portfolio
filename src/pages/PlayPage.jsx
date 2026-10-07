@@ -18,9 +18,17 @@ export default function PlayPage() {
         {/* Page Header */}
         <header className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pb-6 border-b border-black/[0.06]">
           <div className="flex flex-col gap-2 max-w-xl">
-            <div className="flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#86868b]">
-              <span className="h-px w-6 bg-[#86868b]/40" />
-              <span>Play with Manoj · Interactive Arcade</span>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#86868b]">
+                <span className="h-px w-6 bg-[#86868b]/40" />
+                <span>Play with Manoj · Interactive Arcade</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-800">
+                <div className="w-3.5 h-3.5 rounded-full overflow-hidden bg-black shrink-0">
+                  <img src="/cat-dance.gif" alt="Mascot" className="w-full h-full object-cover" />
+                </div>
+                <span>Mascot: Dancing Cat</span>
+              </div>
             </div>
 
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#141416]">

@@ -275,6 +275,49 @@ export default function TicTacToeGame() {
         })}
       </div>
 
+      {/* Celebratory Dancing Cat Mascot Card on Match Completion */}
+      <AnimatePresence>
+        {gameResult && (
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full flex items-center gap-3.5 p-3 sm:p-3.5 rounded-2xl bg-[#141416] text-white shadow-md border border-white/10"
+          >
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden shrink-0 border border-white/20 bg-black shadow-inner">
+              <img
+                src="/cat-dance.gif"
+                alt="Dancing Cat Mascot"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col min-w-0 flex-1">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-semibold">
+                  Arcade Mascot
+                </span>
+                <span className="text-xs">🐱🕺</span>
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">
+                {gameResult === 'user'
+                  ? 'Victory Groove!'
+                  : gameResult === 'draw'
+                  ? 'Stalemate Vibe!'
+                  : 'Manoj Won This Round!'}
+              </span>
+              <p className="text-[11px] text-neutral-300 leading-snug mt-0.5">
+                {gameResult === 'user'
+                  ? 'You outsmarted the bot! The mascot is celebrating your win.'
+                  : gameResult === 'draw'
+                  ? 'Two sharp minds locked in balance. Cat grooves in respect.'
+                  : 'Tactical play by Manoj! Cat dances regardless.'}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Footer Controls */}
       <div className="w-full flex items-center justify-between text-xs text-[#86868b] pt-2 border-t border-black/[0.06]">
         <span className="font-mono text-[11px]">Tactical Strategy Engine</span>
