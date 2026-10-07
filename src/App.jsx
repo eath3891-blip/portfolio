@@ -17,9 +17,29 @@ import PlayPage from './pages/PlayPage';
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [forceReplayIntro, setForceReplayIntro] = useState(false);
-  const [activeSection, setActiveSection] = useState('home'); // 'home' | 'projects' | 'about' | 'play'
+  // Helper to resolve active section from clean URL pathname
+  const getSectionFromPath = () => {
+    // Migrate legacy hash URLs (e.g. #/projects -> /projects)
+    if (typeof window !== 'undefined' && window.location.hash.startsWith('#/')) {
+      const cleanPath = window.location.hash.replace(/^#/, '');
+      window.history.replaceState(null, '', cleanPath);
+    }
 
-  // Ensure browser does not perform automatic scroll jumping on hash navigation
+    if (typeof window === 'undefined') return 'home';
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    if (path.startsWith('/projects')) {
+      return 'projects';
+    } else if (path.startsWith('/about')) {
+      return 'about';
+    } else if (path.startsWith('/play')) {
+      return 'play';
+    }
+    return 'home';
+  };
+
+  const [activeSection, setActiveSection] = useState(getSectionFromPath);
+
+  // Ensure browser does not perform automatic scroll jumping on navigation
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -31,33 +51,24 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeSection]);
 
-  // Sync hash routing so external deep-links (e.g. #/projects/sentinel-ai) open directly
+  // Sync clean HTML5 path routing for browser Back/Forward and direct deep-links
   useEffect(() => {
-    const checkHash = () => {
-      const hash = window.location.hash;
+    const syncRoute = () => {
       window.scrollTo({ top: 0, behavior: 'instant' });
-      if (hash.startsWith('#/projects')) {
-        setActiveSection('projects');
-      } else if (hash.startsWith('#/about')) {
-        setActiveSection('about');
-      } else if (hash.startsWith('#/play')) {
-        setActiveSection('play');
-      } else if (!hash || hash === '#/' || hash === '#') {
-        setActiveSection('home');
-      }
+      setActiveSection(getSectionFromPath());
     };
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
+
+    window.addEventListener('popstate', syncRoute);
+    return () => window.removeEventListener('popstate', syncRoute);
   }, []);
 
   const handleSelectSection = (sectionId) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     setActiveSection(sectionId);
-    if (sectionId === 'home') {
-      window.location.hash = '';
-    } else {
-      window.location.hash = `#/${sectionId}`;
+    const targetUrl = sectionId === 'home' ? '/' : `/${sectionId}`;
+    if (window.location.pathname !== targetUrl) {
+      window.history.pushState(null, '', targetUrl);
+      window.dispatchEvent(new PopStateEvent('popstate'));
     }
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: 'instant' });

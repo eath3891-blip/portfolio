@@ -14,43 +14,68 @@ import CaseStudyPage from './CaseStudyPage';
  * full-page Case Studies (TransOrg IQ, RegisterKaro, Trybl).
  */
 export default function ProjectsPage({ onBackToHome, onReplayIntro }) {
-  const [activeCaseStudyId, setActiveCaseStudyId] = useState(null);
+  const [activeCaseStudyId, setActiveCaseStudyId] = useState(() => {
+    if (typeof window === 'undefined') return null;
+    if (window.location.hash.startsWith('#/projects/')) {
+      const legacyPath = window.location.hash.replace(/^#/, '');
+      window.history.replaceState(null, '', legacyPath);
+    }
+    const pathname = window.location.pathname.replace(/\/$/, '');
+    if (pathname.startsWith('/projects/')) {
+      const id = pathname.replace('/projects/', '');
+      if (['sentinel-ai', 'transorg-iq', 'codash', 'fixora', 'registerkaro'].includes(id)) {
+        return id;
+      }
+    }
+    return null;
+  });
 
-  // Sync hash routing so browser Back/Forward and deep-links work cleanly
+  // Sync route so browser Back/Forward and deep-links work cleanly without hash
   useEffect(() => {
-    const syncWithHash = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#/projects/')) {
-        const id = hash.replace('#/projects/', '');
+    const syncWithRoute = () => {
+      // Migrate legacy hash if user opens an old bookmark
+      if (window.location.hash.startsWith('#/projects/')) {
+        const legacyPath = window.location.hash.replace(/^#/, '');
+        window.history.replaceState(null, '', legacyPath);
+      }
+
+      const pathname = window.location.pathname.replace(/\/$/, '');
+      if (pathname.startsWith('/projects/')) {
+        const id = pathname.replace('/projects/', '');
         if (['sentinel-ai', 'transorg-iq', 'codash', 'fixora', 'registerkaro'].includes(id)) {
           setActiveCaseStudyId(id);
           return;
         } else {
           // If accessing invalid or non-existent case study ID, redirect to main projects
-          window.location.hash = '#/projects';
+          window.history.replaceState(null, '', '/projects');
           setActiveCaseStudyId(null);
           return;
         }
       }
-      if (!hash.startsWith('#/projects/')) {
+      if (pathname === '/projects') {
         setActiveCaseStudyId(null);
       }
     };
 
-    syncWithHash();
-    window.addEventListener('hashchange', syncWithHash);
-    return () => window.removeEventListener('hashchange', syncWithHash);
+    syncWithRoute();
+    window.addEventListener('popstate', syncWithRoute);
+    return () => window.removeEventListener('popstate', syncWithRoute);
   }, []);
 
   const handleSelectCaseStudy = (id) => {
     setActiveCaseStudyId(id);
-    window.location.hash = `#/projects/${id}`;
+    const targetUrl = `/projects/${id}`;
+    if (window.location.pathname !== targetUrl) {
+      window.history.pushState(null, '', targetUrl);
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleBackToProjects = () => {
     setActiveCaseStudyId(null);
-    window.location.hash = '#/projects';
+    if (window.location.pathname !== '/projects') {
+      window.history.pushState(null, '', '/projects');
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
