@@ -109,24 +109,32 @@ export default function AboutHero() {
           className="lg:col-span-5 flex justify-center lg:justify-end w-full"
         >
           <div className="group relative w-full max-w-[320px] sm:max-w-[420px] aspect-[4/4.8] sm:aspect-[4/4.6] rounded-3xl overflow-hidden bg-[#e5e5ea] border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.04)] select-none">
-            {/* Crossfading Slideshow Container */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={hero.slideshow[currentIdx].id}
-                initial={{ opacity: 0, scale: 1.0 }}
-                animate={{ opacity: 1, scale: 1.02 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 w-full h-full"
-              >
-                <img
-                  src={hero.slideshow[currentIdx].url}
-                  alt={hero.slideshow[currentIdx].alt}
-                  style={hero.slideshow[currentIdx].objectPosition ? { objectPosition: hero.slideshow[currentIdx].objectPosition } : undefined}
-                  className="w-full h-full object-cover object-center"
-                />
-              </motion.div>
-            </AnimatePresence>
+            {/* Seamless Layered Crossfading Slideshow Container */}
+            <div className="absolute inset-0 w-full h-full">
+              {hero.slideshow.map((slide, idx) => {
+                const isActive = idx === currentIdx;
+                return (
+                  <div
+                    key={slide.id}
+                    className="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      pointerEvents: isActive ? 'auto' : 'none',
+                      transform: 'translate3d(0, 0, 0)',
+                    }}
+                  >
+                    <img
+                      src={slide.url}
+                      alt={slide.alt}
+                      style={slide.objectPosition ? { objectPosition: slide.objectPosition } : undefined}
+                      className={`w-full h-full object-cover object-center transition-transform duration-1000 ease-out ${
+                        isActive ? 'scale-[1.02]' : 'scale-100'
+                      }`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
 
             {/* Subtle Gradient Scrim at Bottom */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />

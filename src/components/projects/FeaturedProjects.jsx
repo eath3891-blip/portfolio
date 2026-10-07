@@ -34,6 +34,29 @@ const medusaeConfig = {
 export default function FeaturedProjects({ onSelectProject }) {
   const { featuredSection, featuredProjects } = PROJECTS_CONFIG;
   const sectionRef = useRef(null);
+  const [isInView, setIsInView] = React.useState(false);
+  const [isDesktop, setIsDesktop] = React.useState(true);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsDesktop(window.innerWidth >= 768);
+      const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
@@ -41,18 +64,29 @@ export default function FeaturedProjects({ onSelectProject }) {
       aria-labelledby="featured-projects-heading"
       className="w-full bg-[#0b0b0e] text-white py-16 sm:py-20 md:py-28 border-y border-black/10 relative overflow-hidden"
     >
-      {/* Interactive Google Antigravity Medusae Particles Background */}
-      <div 
-        aria-hidden="true" 
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
-      >
-        <Medusae config={medusaeConfig} style={{ width: '100%', height: '100%' }} />
-      </div>
+      {/* Interactive Google Antigravity Medusae Particles Background: Desktop only & only when near viewport */}
+      {isDesktop && isInView && (
+        <div 
+          aria-hidden="true" 
+          className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+        >
+          <Medusae config={medusaeConfig} style={{ width: '100%', height: '100%' }} />
+        </div>
+      )}
 
-      {/* Ambient lighting pools for warm red and gold refraction */}
-      <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
-      <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none z-[1]" />
+      {/* Zero-cost ambient radial lighting pools for warm red and gold refraction */}
+      <div
+        className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full pointer-events-none z-[1]"
+        style={{ background: 'radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%)' }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/6 w-96 h-96 rounded-full pointer-events-none z-[1]"
+        style={{ background: 'radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%)' }}
+      />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none z-[1]"
+        style={{ background: 'radial-gradient(circle, rgba(234, 179, 8, 0.08) 0%, transparent 70%)' }}
+      />
 
       {/* Subtle top ambient sheen */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-40 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none z-[1]" />

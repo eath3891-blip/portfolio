@@ -16,8 +16,9 @@ export default function FeaturedProjectCard({ project, index, onSelect }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
       onClick={() => onSelect && onSelect(project)}
-      className="group relative flex flex-col justify-between h-full rounded-[2rem] sm:rounded-[2.4rem] bg-white border border-black/[0.08] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.18)] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 cursor-pointer select-none"
+      className="group relative flex flex-col justify-between h-full rounded-[2rem] sm:rounded-[2.4rem] bg-white border border-black/[0.08] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.18)] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 cursor-pointer select-none will-change-transform"
     >
       <div className="flex flex-col">
         {/* Real Project Image Viewport */}

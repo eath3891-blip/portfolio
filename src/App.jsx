@@ -131,9 +131,10 @@ export default function App() {
       {/* Dynamic View Container with Smooth, Instant Apple-Style Transition */}
       <motion.div
         key={activeSection}
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'opacity', transform: 'translate3d(0, 0, 0)' }}
         className="w-full"
       >
         {renderActiveView()}

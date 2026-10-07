@@ -56,12 +56,12 @@ function BentoTile({ item, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative rounded-3xl sm:rounded-[2.4rem] overflow-hidden border border-white/80 ring-1 ring-black/[0.04] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06)] flex flex-col justify-end p-4 sm:p-6 select-none !min-h-[190px] sm:!min-h-[300px] ${item.spanClass}`}
-      style={{ backgroundColor: item.fallbackColor }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      className={`group relative rounded-3xl sm:rounded-[2.4rem] overflow-hidden border border-white/80 ring-1 ring-black/[0.04] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06)] flex flex-col justify-end p-4 sm:p-6 select-none !min-h-[190px] sm:!min-h-[300px] ${item.spanClass} will-change-transform`}
+      style={{ backgroundColor: item.fallbackColor, willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
     >
       {/* Background Image with subtle scale on hover (1.00 -> 1.03) */}
       {!imgError && (

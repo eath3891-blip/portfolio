@@ -84,9 +84,9 @@ export default function IntroAnimation({ onComplete, forceReplay = false }) {
         initial={{ opacity: 1 }}
         exit={{
           opacity: 0,
-          filter: 'blur(14px)',
-          transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] }
+          transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] }
         }}
+        style={{ willChange: 'opacity', transform: 'translate3d(0, 0, 0)' }}
         className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#fbfbfd] text-[#1d1d1f] select-none cursor-pointer"
         onClick={handleSkip}
       >
@@ -99,27 +99,28 @@ export default function IntroAnimation({ onComplete, forceReplay = false }) {
                 key={currentGreeting.text}
                 initial={{
                   opacity: 0,
-                  scale: 0.97,
-                  filter: 'blur(8px)'
+                  y: 12,
+                  scale: 0.98
                 }}
                 animate={{
                   opacity: 1,
+                  y: 0,
                   scale: 1,
-                  filter: 'blur(0px)',
                   transition: {
-                    duration: 0.55,
+                    duration: 0.45,
                     ease: [0.16, 1, 0.3, 1]
                   }
                 }}
                 exit={{
                   opacity: 0,
+                  y: -10,
                   scale: 1.01,
-                  filter: 'blur(6px)',
                   transition: {
-                    duration: 0.38,
+                    duration: 0.32,
                     ease: [0.16, 1, 0.3, 1]
                   }
                 }}
+                style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
                 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-[-0.035em] text-[#141416]"
               >
                 {currentGreeting.text}

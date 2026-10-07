@@ -48,11 +48,12 @@ export default function MoreOfMyWork() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Explore Behance visual case studies and design work (opens in a new tab)"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#0057ff]/40 hover:shadow-[0_32px_70px_-15px_rgba(0,87,255,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
+          transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
+          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white border border-black/[0.08] shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#0057ff]/40 hover:shadow-[0_32px_70px_-15px_rgba(0,87,255,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none will-change-transform"
         >
           <div className="flex flex-col gap-5">
             {/* Top Bar: 3D App Icon Well + Frosted Category Pill */}
@@ -104,11 +105,12 @@ export default function MoreOfMyWork() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View Figma community templates and design files (opens in a new tab)"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#f24e1e]/40 hover:shadow-[0_32px_70px_-15px_rgba(242,78,30,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none"
+          transition={{ duration: 0.5, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
+          className="group relative flex flex-col justify-between p-5 sm:p-7 rounded-[2.2rem] sm:rounded-[2.8rem] bg-white border border-black/[0.08] shadow-[0_24px_55px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] hover:border-[#f24e1e]/40 hover:shadow-[0_32px_70px_-15px_rgba(242,78,30,0.14)] hover:-translate-y-1.5 transition-all duration-300 select-none will-change-transform"
         >
           <div className="flex flex-col gap-5">
             {/* Top Bar: 3D App Icon Well + Frosted Category Pill */}

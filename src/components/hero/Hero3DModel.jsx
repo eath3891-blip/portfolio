@@ -102,6 +102,8 @@ export default function Hero3DModel({ className = '' }) {
           background: 'transparent',
           pointerEvents: 'auto',
           zIndex: 15,
+          willChange: 'opacity',
+          transform: 'translate3d(0, 0, 0)',
         }}
       />
 

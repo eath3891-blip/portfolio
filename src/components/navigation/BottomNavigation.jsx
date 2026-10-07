@@ -79,6 +79,7 @@ export default function BottomNavigation({ activeSection = 'home', onSelectSecti
                 <motion.div
                   layoutId="activeDockIndicator"
                   className="absolute inset-0 rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+                  style={{ willChange: 'transform', transform: 'translate3d(0, 0, 0)', backfaceVisibility: 'hidden' }}
                   transition={{
                     type: 'spring',
                     stiffness: 380,

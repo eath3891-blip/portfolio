@@ -159,13 +159,29 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
-/* Infinite Marquee Keyframe */
+/* GPU Compositing & Anti-Flicker Hardware Acceleration */
+.will-change-transform,
+.animate-marquee-infinite {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Stable Scrollbar Gutter to prevent 15px layout shift between pages */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Infinite Marquee Keyframe with Hardware 3D Transform */
 @keyframes marquee-infinite {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

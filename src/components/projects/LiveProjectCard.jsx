@@ -168,11 +168,12 @@ export default function LiveProjectCard({ project, index }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col justify-between h-full rounded-[2.2rem] sm:rounded-[2.4rem] bg-white/95 backdrop-blur-2xl border border-white/90 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] p-5 sm:p-5.5 hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 select-none"
+      transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
+      className="group relative flex flex-col justify-between h-full rounded-[2.2rem] sm:rounded-[2.4rem] bg-white border border-black/[0.08] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.06),0_8px_16px_-8px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04] p-5 sm:p-5.5 hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 select-none will-change-transform"
     >
       <div className="flex flex-col gap-4">
         {/* Browser Top Window Chrome (Liquid Glass Frame) */}

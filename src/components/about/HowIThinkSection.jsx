@@ -60,10 +60,11 @@ export default function HowIThinkSection() {
       <div className="hidden lg:grid grid-cols-12 gap-12 items-start w-full min-w-0">
         {/* Left Column: Design Artifact Visual Anchor + Active Principle Deep Dive (Span 5) */}
         <motion.div
-          initial={{ opacity: 0, y: 45, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
           className="col-span-5 flex flex-col gap-6 sticky top-28"
         >
           {/* Design Artifact Visual Frame */}
