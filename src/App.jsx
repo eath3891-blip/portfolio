@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import IntroAnimation from './components/intro/IntroAnimation';
 import Hero from './components/hero/Hero';
 import BottomNavigation from './components/navigation/BottomNavigation';
 import DeviceNoticeBanner from './components/navigation/DeviceNoticeBanner';
-import ProjectsPage from './pages/ProjectsPage';
-import AboutPage from './pages/AboutPage';
-import PlayPage from './pages/PlayPage';
+
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const PlayPage = lazy(() => import('./pages/PlayPage'));
 
 /**
  * App Root:
@@ -89,26 +90,34 @@ export default function App() {
     switch (activeSection) {
       case 'projects':
         return (
-          <ProjectsPage
-            key="projects-page"
-            onBackToHome={() => setActiveSection('home')}
-            onReplayIntro={handleReplayIntro}
-          />
+          <Suspense fallback={<div className="min-h-screen bg-[#fbfbfd]" />}>
+            <ProjectsPage
+              key="projects-page"
+              onBackToHome={() => setActiveSection('home')}
+              onReplayIntro={handleReplayIntro}
+            />
+          </Suspense>
         );
       case 'about':
         return (
-          <AboutPage
-            key="about-page"
-            onBackToHome={() => setActiveSection('home')}
-            onReplayIntro={handleReplayIntro}
-            onNavigateToProjects={() => setActiveSection('projects')}
-          />
+          <Suspense fallback={<div className="min-h-screen bg-[#fbfbfd]" />}>
+            <AboutPage
+              key="about-page"
+              onBackToHome={() => setActiveSection('home')}
+              onReplayIntro={handleReplayIntro}
+              onNavigateToProjects={() => setActiveSection('projects')}
+            />
+          </Suspense>
         );
       case 'play':
-        return <PlayPage key="play-page" onBackToHome={() => setActiveSection('home')} />;
+        return (
+          <Suspense fallback={<div className="min-h-screen bg-[#fbfbfd]" />}>
+            <PlayPage key="play-page" onBackToHome={() => setActiveSection('home')} />
+          </Suspense>
+        );
       case 'home':
       default:
-        return <Hero key="hero-landing" onReplayIntro={handleReplayIntro} />;
+        return <Hero key="hero-landing" onReplayIntro={handleReplayIntro} isIntroActive={showIntro} />;
     }
   };
 

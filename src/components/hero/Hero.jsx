@@ -15,7 +15,7 @@ import CompanyLogoScroller from './CompanyLogoScroller';
  * Desktop & Tablet (>= 768px):
  *  - Fluid full-viewport 2-tier dual-column layout with interactive 3D helmet
  */
-export default function Hero({ onReplayIntro }) {
+export default function Hero({ onReplayIntro, isIntroActive = false }) {
   const [isLargeDevice, setIsLargeDevice] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth >= 768;
@@ -159,7 +159,7 @@ export default function Hero({ onReplayIntro }) {
                 className="relative w-full"
                 style={{ height: 'clamp(180px, 38vh, 460px)' }}
               >
-                <Hero3DModel className="w-full h-full" />
+                <Hero3DModel className="w-full h-full" disabled={isIntroActive} />
               </div>
             </motion.div>
           )}

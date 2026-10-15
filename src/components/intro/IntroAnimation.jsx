@@ -1,15 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Laptop } from 'lucide-react';
+import FlipClockCounter from './FlipClockCounter';
 
 /**
  * Opening Experience:
  * 1. "Welcome" fades in first onto a pristine minimal canvas.
  * 2. As it transitions into "Hello", "नमस्ते", "Bonjour", "Hola", etc.,
- *    an Apple-style sleek loading progress bar appears underneath,
- *    indicating the portfolio is loading (0% -> 100%).
- * 3. When progress completes, seamlessly dissolves into the main hero.
+ *    a retro 3D split-flap mechanical flip clock counter appears underneath,
+ *    counting up in rhythmic Solari mechanical ticks (0% -> 100%).
+ * 3. When progress completes at 100%, seamlessly dissolves into the main hero.
  */
+// Memoized greeting display to ensure progress ticks do not trigger typography re-renders
+const GreetingDisplay = React.memo(function GreetingDisplay({ text }) {
+  return (
+    <div className="min-h-[120px] sm:min-h-[150px] flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        <motion.h1
+          key={text}
+          initial={{ opacity: 0, y: 12, scale: 0.98 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
+          }}
+          exit={{
+            opacity: 0,
+            y: -10,
+            scale: 1.01,
+            transition: { duration: 0.32, ease: [0.16, 1, 0.3, 1] }
+          }}
+          style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
+          className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-[-0.035em] text-[#141416]"
+        >
+          {text}
+        </motion.h1>
+      </AnimatePresence>
+    </div>
+  );
+});
+
 export default function IntroAnimation({ onComplete, forceReplay = false }) {
   const greetings = [
     { text: "Welcome" },
@@ -38,31 +69,49 @@ export default function IntroAnimation({ onComplete, forceReplay = false }) {
       }
     }
 
-    // Step duration: 1300ms per greeting
     const totalSteps = greetings.length;
-    
+    let tickTimer = null;
+    let startTime = null;
+
+    // Greeting step interval: 1350ms per word
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         if (prev < totalSteps - 1) {
           const nextIndex = prev + 1;
-          // Progress scales smoothly from 0% at step 1 up to 100% at final step
-          const pct = Math.min(100, Math.round((nextIndex / (totalSteps - 1)) * 100));
-          setProgress(pct);
+          
+          // Start the fluid mechanical counter on the first greeting transition (Hello)
+          if (nextIndex === 1 && !startTime) {
+            startTime = Date.now();
+            const counterDuration = (totalSteps - 1) * 1350;
+            tickTimer = setInterval(() => {
+              const elapsed = Date.now() - startTime;
+              const pct = Math.min(100, Math.round((elapsed / counterDuration) * 100));
+              setProgress(pct);
+              if (pct >= 100) {
+                clearInterval(tickTimer);
+              }
+            }, 85);
+          }
+          
           return nextIndex;
         } else {
           clearInterval(interval);
+          if (tickTimer) clearInterval(tickTimer);
           setProgress(100);
           setTimeout(() => {
             sessionStorage.setItem('manoj_intro_viewed', 'true');
             setIsFinished(true);
             if (onComplete) onComplete();
-          }, 650);
+          }, 850);
           return prev;
         }
       });
     }, 1350);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (tickTimer) clearInterval(tickTimer);
+    };
   }, [forceReplay, greetings.length, onComplete]);
 
   // Click anywhere to skip directly into hero
@@ -92,73 +141,23 @@ export default function IntroAnimation({ onComplete, forceReplay = false }) {
       >
         {/* Center Container */}
         <div className="relative flex flex-col items-center justify-center px-6 text-center">
-          {/* Greeting Typography */}
-          <div className="min-h-[120px] sm:min-h-[150px] flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={currentGreeting.text}
-                initial={{
-                  opacity: 0,
-                  y: 12,
-                  scale: 0.98
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: {
-                    duration: 0.45,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                exit={{
-                  opacity: 0,
-                  y: -10,
-                  scale: 1.01,
-                  transition: {
-                    duration: 0.32,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                style={{ willChange: 'transform, opacity', transform: 'translate3d(0, 0, 0)' }}
-                className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-[-0.035em] text-[#141416]"
-              >
-                {currentGreeting.text}
-              </motion.h1>
-            </AnimatePresence>
-          </div>
+          {/* Greeting Typography (Memoized against counter ticks) */}
+          <GreetingDisplay text={currentGreeting.text} />
 
           {/* 
-            Apple-style Minimalist Loading Progress Bar:
-            Appears after "Welcome", below the subsequent greetings (Hello, Namaste, etc.)
+            Retro 3D Split-Flap Mechanical Flip Clock Counter:
+            Appears after "Welcome", ticking in rhythm with greetings (Hello, Namaste, etc.)
           */}
           <AnimatePresence>
             {isAfterWelcome && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
+                initial={{ opacity: 0, scale: 0.95, y: 14 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98, y: -10 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center gap-2.5 mt-8 sm:mt-10"
+                className="mt-6 sm:mt-8"
               >
-                {/* Thin sleek track */}
-                <div className="w-48 sm:w-56 h-[2.5px] rounded-full bg-black/[0.08] overflow-hidden">
-                  <motion.div
-                    className="h-full bg-black rounded-full"
-                    initial={{ width: '0%' }}
-                    animate={{ width: `${progress}%` }}
-                    transition={{
-                      duration: 0.85,
-                      ease: [0.16, 1, 0.3, 1]
-                    }}
-                  />
-                </div>
-
-                {/* Subtle loading label and percentage */}
-                <div className="flex items-center justify-between w-48 sm:w-56 text-[10px] tracking-wider uppercase font-mono text-[#86868b]">
-                  <span>Loading</span>
-                  <span>{progress}%</span>
-                </div>
+                <FlipClockCounter progress={progress} />
               </motion.div>
             )}
           </AnimatePresence>

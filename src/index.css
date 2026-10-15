@@ -208,3 +208,65 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Split-Flap Mechanical Flip Clock 3D Animations */
+@keyframes flip-top {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes flip-bottom {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes shade-top {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shade-bottom {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-flip-top {
+  animation: flip-top 0.16s cubic-bezier(0.4, 0, 0.7, 1) forwards;
+  will-change: transform;
+}
+
+.animate-flip-bottom {
+  animation: flip-bottom 0.16s cubic-bezier(0.15, 1, 0.3, 1) 0.16s forwards;
+  transform: rotateX(90deg);
+  will-change: transform;
+}
+
+.animate-shade-top {
+  animation: shade-top 0.16s ease-in forwards;
+}
+
+.animate-shade-bottom {
+  animation: shade-bottom 0.16s ease-out 0.16s forwards;
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+

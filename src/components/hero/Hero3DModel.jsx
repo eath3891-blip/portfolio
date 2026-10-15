@@ -29,18 +29,10 @@ const MAX_ZOOM_DELTA = 900;
 const DECAY_RATE     = 0.90;
 const PAGE_BG        = '#fbfbfd';
 
-export default function Hero3DModel({ className = '' }) {
+export default function Hero3DModel({ className = '', disabled = false }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const zoomAcc = useRef(0);
   const rafRef  = useRef(null);
-
-  const embedUrl =
-    'https://sketchfab.com/models/a00246e1ab3140c6822a22df1a98d43c/embed' +
-    '?autostart=1&transparent=1' +
-    '&ui_controls=0&ui_infos=0&ui_watermark=0' +
-    '&ui_stop=0&ui_help=0&ui_settings=0' +
-    '&ui_inspector=0&ui_annotations=0' +
-    '&ui_ar=0&ui_vr=0&ui_fullscreen=0&ui_hint=0&dnt=1';
 
   const handleWheel = useCallback((e) => {
     zoomAcc.current += e.deltaY;
@@ -61,6 +53,20 @@ export default function Hero3DModel({ className = '' }) {
       e.stopPropagation();
     }
   }, []);
+
+  if (disabled) {
+    return (
+      <div className={`relative w-full h-full pointer-events-none select-none ${className}`} />
+    );
+  }
+
+  const embedUrl =
+    'https://sketchfab.com/models/a00246e1ab3140c6822a22df1a98d43c/embed' +
+    '?autostart=1&transparent=1' +
+    '&ui_controls=0&ui_infos=0&ui_watermark=0' +
+    '&ui_stop=0&ui_help=0&ui_settings=0' +
+    '&ui_inspector=0&ui_annotations=0' +
+    '&ui_ar=0&ui_vr=0&ui_fullscreen=0&ui_hint=0&dnt=1';
 
   // Shared style for all shield divs
   const shieldBase = {
