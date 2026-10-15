@@ -84,17 +84,19 @@ export const PROJECTS_CONFIG = {
       number: "04",
       title: "Sentinel AI",
       badge: "AI Governance",
-      category: "Agent Control Plane · TransOrg Analytics",
+      category: "In-House Project · TransOrg Analytics",
       context:
         "An enterprise control center for AI agents: helping organizations understand what autonomous agents can access, what they are doing, and where human intervention is required.",
       role: "Product Designer",
       focus: "Product Strategy · AI Systems · Enterprise UX",
-      year: "2025",
-      tags: ["AI Governance", "Agent Observability", "Enterprise UX"],
+      year: "2026",
+      tags: ["In-House Project", "AI Governance", "Enterprise UX"],
       accentColor: "#2563eb",
       visualType: "sentinel",
       ctaText: "Explore case study",
       url: "/projects/sentinel-ai",
+      demoUrl: "https://senital-ai.vercel.app/",
+      demoCtaText: "Live Demo",
       image: "/images/projects/sentinel/sentinel-fleet-control.png",
       highlight: "Fleet Observability · 95% Governed"
     }
@@ -109,6 +111,21 @@ export const PROJECTS_CONFIG = {
   },
 
   liveShippedProjects: [
+    {
+      id: "sentinel-ai-demo",
+      title: "Sentinel AI Control Plane",
+      tags: ["In-House · TransOrg Analytics", "AI Governance"],
+      description:
+        "Interactive web control plane for autonomous AI agents. Test real-time fleet telemetry, automated policy interception, and human-in-the-loop approval dockets with demo data.",
+      role: "Product Designer",
+      platform: "Web",
+      year: "2026",
+      cta: "Launch Live Demo",
+      url: "https://senital-ai.vercel.app/",
+      status: "Live Demo",
+      accentColor: "#2563eb",
+      image: "/images/projects/sentinel/sentinel-live-demo-mockup.png"
+    },
     {
       id: "registerkaro",
       title: "RegisterKaro Customer Portal",

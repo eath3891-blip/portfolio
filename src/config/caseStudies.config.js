@@ -16,10 +16,10 @@ export const CASE_STUDIES_CONFIG = {
     subtitle: "A control center for AI agents",
     eyebrow: "CASE STUDY 01: AI AGENT GOVERNANCE & OBSERVABILITY",
     badge: "AI Governance",
-    year: "2025",
+    year: "2026",
     role: "Product Designer",
-    timeline: "Independent Concept (2025)",
-    team: "Independent Product Concept",
+    timeline: "In-House Project · TransOrg Analytics (2026)",
+    team: "In-House Project · TransOrg Analytics",
     platform: "Enterprise Web Control Plane (Desktop & Tablet)",
     deliverables: "Product Strategy, UX Architecture, Interaction Design, Technical Systems",
     accentColor: "#3b82f6",
@@ -27,13 +27,14 @@ export const CASE_STUDIES_CONFIG = {
     nextProjectId: "codash",
 
     executiveSummary:
-      "Sentinel AI is a control center for AI agents. As AI agents move from answering questions to taking actions, enterprises need a clearer way to understand what those agents can access, what they are doing, and when humans need to step in.",
+      "Sentinel AI is an in-house enterprise control center for AI agents developed at TransOrg Analytics. As AI agents move from answering questions to taking actions, enterprises need a clearer way to understand what those agents can access, what they are doing, and when humans need to step in.",
 
     metadata: [
       { label: "Role", value: "Product Designer" },
-      { label: "Project Type", value: "Independent Product Concept" },
+      { label: "Project Type", value: "In-House Project · TransOrg Analytics" },
       { label: "Platform", value: "Enterprise Web Control Plane" },
-      { label: "Core Scope", value: "Product Strategy, UX Design, AI Systems, Enterprise UX" }
+      { label: "Core Scope", value: "Product Strategy, UX Design, AI Systems, Enterprise UX" },
+      { label: "Timeline", value: "2026" }
     ],
 
     challenge: {
