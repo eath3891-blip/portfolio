@@ -1401,6 +1401,7 @@ export default function SentinelAICaseStudy({ onBackToProjects, onNavigateCaseSt
                 alt="Sentinel AI Live Product Demo Mockup showing Overview, Agents, and Real-Time Risk Dockets"
                 className="w-full h-auto object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.015]"
                 loading="lazy"
+                decoding="async"
               />
 
               {/* Hover Overlay Vignette & Floating Badge with Single Dedicated Action */}

@@ -95,6 +95,7 @@ export default function CompanyLogoScroller({ className = '' }) {
               alt={company.name}
               draggable={false}
               loading="eager"
+              decoding="async"
               className={`w-auto object-contain transition-transform duration-200 group-hover/item:scale-105 ${
                 company.id === 'registerkaro'
                   ? 'max-h-[27px] sm:max-h-[30px] max-w-[96%] scale-[1.08]'

@@ -80,10 +80,15 @@ export default function Hero3DModel({ className = '', disabled = false }) {
     <div
       className={`relative w-full h-full pointer-events-none select-none ${className}`}
     >
-      {/* Loading spinner */}
+      {/* Loading skeleton placeholder */}
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <div className="w-7 h-7 rounded-full border-2 border-black/10 border-t-black/60 animate-spin" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 transition-opacity duration-500">
+          <div className="flex flex-col items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full border-2 border-black/10 border-t-[#2563eb] animate-spin" />
+            <span className="text-[11px] font-mono tracking-wider uppercase text-[#86868b]">
+              Loading 3D Helmet
+            </span>
+          </div>
         </div>
       )}
 

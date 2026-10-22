@@ -69,6 +69,7 @@ function BentoTile({ item, index }) {
           src={item.image}
           alt={item.title}
           loading="lazy"
+          decoding="async"
           onError={() => setImgError(true)}
           style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
           className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-103 filter contrast-[1.02]"

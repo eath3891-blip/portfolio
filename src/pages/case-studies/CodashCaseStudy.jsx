@@ -805,7 +805,7 @@ export default function CodashCaseStudy({ onBackToProjects, onNavigateCaseStudy 
             <div className="pt-4 border-t border-black/[0.05] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-16 h-10 rounded-lg overflow-hidden border border-black/10 shrink-0 shadow-xs">
-                  <img src="/images/projects/codash/codash-hr-dashboard.png" alt="Recruiter dashboard preview" className="w-full h-full object-cover" />
+                  <img src="/images/projects/codash/codash-hr-dashboard.png" alt="Recruiter dashboard preview" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </div>
                 <div className="text-xs">
                   <span className="font-bold text-[#141416] block">Coinvervue HR Portal In Action</span>
@@ -858,6 +858,7 @@ export default function CodashCaseStudy({ onBackToProjects, onNavigateCaseStudy 
                   alt="Codash Candidate Welcome Screen setting role expectations and non-coercive ethical policies"
                   className="w-full h-auto object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -1012,6 +1013,7 @@ export default function CodashCaseStudy({ onBackToProjects, onNavigateCaseStudy 
                 alt="Codash Candidate Live Interview Interface with dual Meet-style video tiles, real-time transcript, and thinking mode banner"
                 className="w-full h-auto object-cover"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -1643,6 +1645,7 @@ function twoSum(nums: number[], target: number): number[] {
                     alt="Codash Recruiter Dashboard showing Active Job Roles and Weighted Skill Criteria"
                     className="w-full h-auto object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -1699,6 +1702,7 @@ function twoSum(nums: number[], target: number): number[] {
                     alt="Codash Interview Structure showing 6-phase flow and technical questions"
                     className="w-full h-auto object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -1755,6 +1759,7 @@ function twoSum(nums: number[], target: number): number[] {
                     alt="Codash Candidate Pipeline table showing applicant status stepper and match scores"
                     className="w-full h-auto object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -1811,6 +1816,7 @@ function twoSum(nums: number[], target: number): number[] {
                     alt="Codash Job Creation and Skill Weighting Studio"
                     className="w-full h-auto object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -1911,6 +1917,7 @@ function twoSum(nums: number[], target: number): number[] {
                   alt="Codash Candidate Interview Complete Screen with Next Steps and 5-Star Feedback"
                   className="w-full h-auto object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 

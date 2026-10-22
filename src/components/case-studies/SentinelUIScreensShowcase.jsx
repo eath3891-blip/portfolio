@@ -541,6 +541,8 @@ export default function SentinelUIScreensShowcase() {
                 <img
                   src={activeScreen.imageSrc}
                   alt={activeScreen.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain"
                 />
               ) : (
@@ -604,6 +606,8 @@ export default function SentinelUIScreensShowcase() {
                   <img
                     src={screen.imageSrc}
                     alt={screen.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -665,6 +669,7 @@ export default function SentinelUIScreensShowcase() {
                   <img
                     src={fullscreenScreen.imageSrc}
                     alt={fullscreenScreen.title}
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 ) : (

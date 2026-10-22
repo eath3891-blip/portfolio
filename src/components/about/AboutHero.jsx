@@ -126,6 +126,8 @@ export default function AboutHero() {
                     <img
                       src={slide.url}
                       alt={slide.alt}
+                      loading="lazy"
+                      decoding="async"
                       style={slide.objectPosition ? { objectPosition: slide.objectPosition } : undefined}
                       className={`w-full h-full object-cover object-center transition-transform duration-1000 ease-out ${
                         isActive ? 'scale-[1.02]' : 'scale-100'

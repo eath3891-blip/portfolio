@@ -26,6 +26,7 @@ export default function TopBar({ onReplayIntro }) {
                 e.currentTarget.src = "https://media.tenor.com/lfDATg4Bhc0AAAAC/happy-cat.gif";
               }}
               alt="Happy Cat"
+              decoding="async"
               className="w-full h-full object-cover select-none pointer-events-none"
             />
           </div>

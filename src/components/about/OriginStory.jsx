@@ -63,6 +63,8 @@ export default function OriginStory() {
             <img
               src={origin.image.url}
               alt={origin.image.alt}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-103"
             />
             {/* Subtle Gradient & Caption */}

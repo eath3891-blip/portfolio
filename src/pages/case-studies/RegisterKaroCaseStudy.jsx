@@ -133,6 +133,7 @@ function ImagePlaceholder({
               alt={title} 
               className={`w-full ${imgAspect || 'max-h-[340px] sm:max-h-[460px] md:max-h-[540px]'} ${objectFit} rounded-lg transition-transform duration-300 group-hover/img:scale-[1.008]`}
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors flex items-center justify-center pointer-events-none">
               <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-neutral-900/95 text-white border border-neutral-700 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono flex items-center gap-1.5 shadow-xl">
@@ -3006,6 +3007,7 @@ export default function RegisterKaroCaseStudy({ onBackToProjects, onNavigateCase
               <img 
                 src={modalImage.src} 
                 alt={modalImage.title} 
+                decoding="async"
                 className="max-w-full max-h-[78vh] object-contain rounded-lg shadow-2xl" 
               />
             </div>

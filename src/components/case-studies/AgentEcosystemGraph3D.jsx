@@ -486,6 +486,7 @@ export default function AgentEcosystemGraph3D() {
     let camera = null;
     let animId = null;
     let handleResize = null;
+    let observer = null;
 
     try {
       const width = canvas.clientWidth || 800;
@@ -504,7 +505,7 @@ export default function AgentEcosystemGraph3D() {
         powerPreference: 'default'
       });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 
       // Subtle ambient & directional lights
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
@@ -607,8 +608,14 @@ export default function AgentEcosystemGraph3D() {
 
       updateLines();
 
+      let isVisible = true;
+
       // Animation & Render Loop
       const render = () => {
+        if (!isVisible) {
+          animId = null;
+          return;
+        }
         animId = requestAnimationFrame(render);
 
         const now = performance.now();
@@ -664,6 +671,18 @@ export default function AgentEcosystemGraph3D() {
 
       render();
 
+      // Intersection observer to pause rendering when offscreen
+      if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(([entry]) => {
+          const wasVisible = isVisible;
+          isVisible = entry.isIntersecting;
+          if (isVisible && !wasVisible && !animId) {
+            animId = requestAnimationFrame(render);
+          }
+        }, { threshold: 0.05 });
+        observer.observe(canvas);
+      }
+
       // Resize observer
       handleResize = () => {
         if (!canvas || !renderer || !camera) return;
@@ -686,6 +705,7 @@ export default function AgentEcosystemGraph3D() {
 
     return () => {
       if (animId) cancelAnimationFrame(animId);
+      if (observer) observer.disconnect();
       if (handleResize) window.removeEventListener('resize', handleResize);
       if (renderer) {
         try { renderer.dispose(); } catch (_) {}

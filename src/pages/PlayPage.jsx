@@ -25,7 +25,7 @@ export default function PlayPage() {
               </div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-800">
                 <div className="w-3.5 h-3.5 rounded-full overflow-hidden bg-black shrink-0">
-                  <img src="/cat-dance.gif" alt="Mascot" className="w-full h-full object-cover" />
+                  <img src="/cat-dance.gif" alt="Mascot" decoding="async" className="w-full h-full object-cover" />
                 </div>
                 <span>Mascot: Dancing Cat</span>
               </div>

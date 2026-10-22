@@ -72,6 +72,8 @@ export default function HowIThinkSection() {
             <img
               src={howIThink.visual.url}
               alt={howIThink.visual.alt}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-center"
             />
             {/* Specular Top Sheen */}

@@ -333,6 +333,8 @@ export default function SnakeGame() {
                   <img
                     src="/cat-dance.gif"
                     alt="Dancing Cat Mascot"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>

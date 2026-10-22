@@ -16,6 +16,7 @@ export default function LiveProjectCard({ project, index }) {
             src={project.image}
             alt={`${project.title} preview`}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
         </div>

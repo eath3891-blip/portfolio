@@ -27,6 +27,7 @@ export default function FeaturedProjectCard({ project, index, onSelect }) {
             src={project.image}
             alt={project.title}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
 
