@@ -112,21 +112,6 @@ export const PROJECTS_CONFIG = {
 
   liveShippedProjects: [
     {
-      id: "sentinel-ai-demo",
-      title: "Sentinel AI Control Plane",
-      tags: ["In-House · TransOrg Analytics", "AI Governance"],
-      description:
-        "Interactive web control plane for autonomous AI agents. Test real-time fleet telemetry, automated policy interception, and human-in-the-loop approval dockets with demo data.",
-      role: "Product Designer",
-      platform: "Web",
-      year: "2026",
-      cta: "Launch Live Demo",
-      url: "https://senital-ai.vercel.app/",
-      status: "Live Demo",
-      accentColor: "#2563eb",
-      image: "/images/projects/sentinel/sentinel-live-demo-mockup.png"
-    },
-    {
       id: "registerkaro",
       title: "RegisterKaro Customer Portal",
       tags: ["Business Compliance", "FinTech"],
